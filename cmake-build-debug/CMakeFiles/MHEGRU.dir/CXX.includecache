@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/hukla/CLionProjects/MHEGRU/AddingProblem.cpp
+AddingProblem.h
+/home/hukla/CLionProjects/MHEGRU/AddingProblem.h
+
+/home/hukla/CLionProjects/MHEGRU/AddingProblem.h
+NTL/ZZ.h
+-
+math.h
+-
+fstream
+-
+iostream
+-
+string
+-
+vector
+-
+algorithm
+-
+array
+-
+random
+-
+chrono
+-
+
