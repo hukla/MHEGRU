@@ -249,8 +249,8 @@ void printM(double **M, string name, long nrow, long ncol) {
 AddingProblem::AddingProblem() {}
 
 AddingProblem::AddingProblem(int hiddenSize, int inputSize, int numClass, int bptt) : hiddenSize(hiddenSize),
-                                                                                      inputSize(inputSize),
-                                                                                      numClass(numClass), bptt(bptt) {
+                                                                                            inputSize(inputSize),
+                                                                                            numClass(numClass), bptt(bptt) {
     // initialize weight variables
     this->Wh = new double *[hiddenSize];
     for (int i = 0; i < hiddenSize; ++i) Wh[i] = new double[inputSize]();

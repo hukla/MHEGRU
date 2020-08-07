@@ -123,33 +123,6 @@ MHEGRU/fast:
 	$(MAKE) -f CMakeFiles/MHEGRU.dir/build.make CMakeFiles/MHEGRU.dir/build
 .PHONY : MHEGRU/fast
 
-src/AddingProblem.o: src/AddingProblem.cpp.o
-
-.PHONY : src/AddingProblem.o
-
-# target to build an object file
-src/AddingProblem.cpp.o:
-	$(MAKE) -f CMakeFiles/MHEGRU.dir/build.make CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o
-.PHONY : src/AddingProblem.cpp.o
-
-src/AddingProblem.i: src/AddingProblem.cpp.i
-
-.PHONY : src/AddingProblem.i
-
-# target to preprocess a source file
-src/AddingProblem.cpp.i:
-	$(MAKE) -f CMakeFiles/MHEGRU.dir/build.make CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.i
-.PHONY : src/AddingProblem.cpp.i
-
-src/AddingProblem.s: src/AddingProblem.cpp.s
-
-.PHONY : src/AddingProblem.s
-
-# target to generate assembly for a file
-src/AddingProblem.cpp.s:
-	$(MAKE) -f CMakeFiles/MHEGRU.dir/build.make CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.s
-.PHONY : src/AddingProblem.cpp.s
-
 src/MHEAddingProblem.o: src/MHEAddingProblem.cpp.o
 
 .PHONY : src/MHEAddingProblem.o
@@ -186,9 +159,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... MHEGRU"
 	@echo "... edit_cache"
-	@echo "... src/AddingProblem.o"
-	@echo "... src/AddingProblem.i"
-	@echo "... src/AddingProblem.s"
 	@echo "... src/MHEAddingProblem.o"
 	@echo "... src/MHEAddingProblem.i"
 	@echo "... src/MHEAddingProblem.s"

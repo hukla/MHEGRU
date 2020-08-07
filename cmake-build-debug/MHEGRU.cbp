@@ -86,10 +86,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/hukla/CLionProjects/MHEGRU/src/AddingProblem.cpp">
-			<Option target="MHEGRU"/>
-		</Unit>
-		<Unit filename="/home/hukla/CLionProjects/MHEGRU/src/AddingProblem.h">
+		<Unit filename="/home/hukla/CLionProjects/MHEGRU">
 			<Option target="MHEGRU"/>
 		</Unit>
 		<Unit filename="/home/hukla/CLionProjects/MHEGRU/src/MHEAddingProblem.cpp">
