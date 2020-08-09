@@ -200,6 +200,9 @@ ProcessorCount_cmd_getconf:FILEPATH=/usr/bin/getconf
 //Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/sbin/sysctl
 
+//Dependencies for target
+mheaan_LIB_DEPENDS:STATIC=
+
 
 ########################
 # INTERNAL cache entries

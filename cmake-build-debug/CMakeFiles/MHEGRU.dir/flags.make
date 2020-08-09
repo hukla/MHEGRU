@@ -6,5 +6,5 @@ CXX_FLAGS = -g   -std=gnu++14
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/hukla/CLionProjects/MHEGRU/. 
+CXX_INCLUDES = -I/home/hukla/CLionProjects/MHEGRU/./include -I/home/hukla/CLionProjects/MHEGRU/./src -I/home/hukla/CLionProjects/MHEGRU/./include/MHEAAN 
 

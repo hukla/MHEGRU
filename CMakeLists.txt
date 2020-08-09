@@ -1,11 +1,22 @@
-cmake_minimum_required(VERSION 3.10)
-project(MHEGRU)
-
+# cmake version to be used
+cmake_minimum_required(VERSION 3.0)
 set(CMAKE_CXX_STANDARD 14)
 
-include_directories(.)
+# project name
+project(MHEGRU)
 
-add_executable(MHEGRU
-#        src/AddingProblem.cpp src/AddingProblem.h
-        src/MHEAddingProblem.cpp src/MHEAddingProblem.h
-        MHEAAN/)
+# flags
+
+# files
+file(GLOB MHEAAN_SOURCES "src/MHEAAN/*.cpp")
+file(GLOB SOURCES "src/*.cpp")
+
+# include
+include_directories(./include ./src ./include/MHEAAN)
+
+# target
+add_executable(MHEGRU ${MHEAAN_SOURCES} ${SOURCES})
+
+# external libs
+#add_subdirectory(./libs/Logger)
+#target_link_directories(binary logger)

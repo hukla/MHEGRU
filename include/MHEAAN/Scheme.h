@@ -21,9 +21,10 @@ static long CONJUGATION = 2;
 class Scheme {
 private:
 public:
-    bool isSerialized;
 
-	Ring ring;
+	bool isSerialized;
+
+	Ring& ring;
 
 	map<long, Key&> keyMap;
 	map<pair<long, long>, Key&> leftRotKeyMap;
@@ -34,7 +35,7 @@ public:
 
 	Scheme(SecretKey& secretKey, Ring& ring, bool isSerialized = false);
 
-    Scheme() { }
+    Scheme();
 
 
     //----------------------------------------------------------------------------------

@@ -14,8 +14,7 @@ public:
 	ZZ* sx = new ZZ[N]; ///< secret key
 
 	SecretKey(Ring& ring);
-
-    SecretKey();
+	SecretKey();
 
 };
 

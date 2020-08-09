@@ -1,15 +1,20 @@
 #ifndef HERNN_H_
 #define HERNN_H_
 
-#include <src/MHEAAN/SecretKey.h>
-#include <src/MHEAAN/Scheme.h>
+#include "MHEAAN/SecretKey.h"
+#include "MHEAAN/Scheme.h"
 
 using namespace std;
 
 class HERNN {
 private:
+    HERNN(SecretKey secretKey, Scheme scheme);
+
     SecretKey secretKey;
     Scheme scheme;
+
+    double sigmoid_coeff[5] = {0.5, 1.73496, -4.19407, 5.43402, -2.50739};
+    double tanh_coeff[4] = {1, -8.49814, 11.99804, -6.49478};
 
 public:
 	HERNN(SecretKey& secretKey, Scheme& scheme);

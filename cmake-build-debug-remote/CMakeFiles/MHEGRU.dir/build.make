@@ -57,9 +57,441 @@ include CMakeFiles/MHEGRU.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/MHEGRU.dir/flags.make
 
+CMakeFiles/MHEGRU.dir/src/MHEAAN/BootContext.cpp.o: CMakeFiles/MHEGRU.dir/flags.make
+CMakeFiles/MHEGRU.dir/src/MHEAAN/BootContext.cpp.o: ../src/MHEAAN/BootContext.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug-remote/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/MHEGRU.dir/src/MHEAAN/BootContext.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHEGRU.dir/src/MHEAAN/BootContext.cpp.o -c /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/BootContext.cpp
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/BootContext.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHEGRU.dir/src/MHEAAN/BootContext.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/BootContext.cpp > CMakeFiles/MHEGRU.dir/src/MHEAAN/BootContext.cpp.i
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/BootContext.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHEGRU.dir/src/MHEAAN/BootContext.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/BootContext.cpp -o CMakeFiles/MHEGRU.dir/src/MHEAAN/BootContext.cpp.s
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/BootContext.cpp.o.requires:
+
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/BootContext.cpp.o.requires
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/BootContext.cpp.o.provides: CMakeFiles/MHEGRU.dir/src/MHEAAN/BootContext.cpp.o.requires
+	$(MAKE) -f CMakeFiles/MHEGRU.dir/build.make CMakeFiles/MHEGRU.dir/src/MHEAAN/BootContext.cpp.o.provides.build
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/BootContext.cpp.o.provides
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/BootContext.cpp.o.provides.build: CMakeFiles/MHEGRU.dir/src/MHEAAN/BootContext.cpp.o
+
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Ciphertext.cpp.o: CMakeFiles/MHEGRU.dir/flags.make
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Ciphertext.cpp.o: ../src/MHEAAN/Ciphertext.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug-remote/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/MHEGRU.dir/src/MHEAAN/Ciphertext.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHEGRU.dir/src/MHEAAN/Ciphertext.cpp.o -c /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/Ciphertext.cpp
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Ciphertext.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHEGRU.dir/src/MHEAAN/Ciphertext.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/Ciphertext.cpp > CMakeFiles/MHEGRU.dir/src/MHEAAN/Ciphertext.cpp.i
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Ciphertext.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHEGRU.dir/src/MHEAAN/Ciphertext.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/Ciphertext.cpp -o CMakeFiles/MHEGRU.dir/src/MHEAAN/Ciphertext.cpp.s
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Ciphertext.cpp.o.requires:
+
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/Ciphertext.cpp.o.requires
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Ciphertext.cpp.o.provides: CMakeFiles/MHEGRU.dir/src/MHEAAN/Ciphertext.cpp.o.requires
+	$(MAKE) -f CMakeFiles/MHEGRU.dir/build.make CMakeFiles/MHEGRU.dir/src/MHEAAN/Ciphertext.cpp.o.provides.build
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/Ciphertext.cpp.o.provides
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Ciphertext.cpp.o.provides.build: CMakeFiles/MHEGRU.dir/src/MHEAAN/Ciphertext.cpp.o
+
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/EvaluatorUtils.cpp.o: CMakeFiles/MHEGRU.dir/flags.make
+CMakeFiles/MHEGRU.dir/src/MHEAAN/EvaluatorUtils.cpp.o: ../src/MHEAAN/EvaluatorUtils.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug-remote/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MHEGRU.dir/src/MHEAAN/EvaluatorUtils.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHEGRU.dir/src/MHEAAN/EvaluatorUtils.cpp.o -c /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/EvaluatorUtils.cpp
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/EvaluatorUtils.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHEGRU.dir/src/MHEAAN/EvaluatorUtils.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/EvaluatorUtils.cpp > CMakeFiles/MHEGRU.dir/src/MHEAAN/EvaluatorUtils.cpp.i
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/EvaluatorUtils.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHEGRU.dir/src/MHEAAN/EvaluatorUtils.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/EvaluatorUtils.cpp -o CMakeFiles/MHEGRU.dir/src/MHEAAN/EvaluatorUtils.cpp.s
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/EvaluatorUtils.cpp.o.requires:
+
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/EvaluatorUtils.cpp.o.requires
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/EvaluatorUtils.cpp.o.provides: CMakeFiles/MHEGRU.dir/src/MHEAAN/EvaluatorUtils.cpp.o.requires
+	$(MAKE) -f CMakeFiles/MHEGRU.dir/build.make CMakeFiles/MHEGRU.dir/src/MHEAAN/EvaluatorUtils.cpp.o.provides.build
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/EvaluatorUtils.cpp.o.provides
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/EvaluatorUtils.cpp.o.provides.build: CMakeFiles/MHEGRU.dir/src/MHEAAN/EvaluatorUtils.cpp.o
+
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/HERNN.cpp.o: CMakeFiles/MHEGRU.dir/flags.make
+CMakeFiles/MHEGRU.dir/src/MHEAAN/HERNN.cpp.o: ../src/MHEAAN/HERNN.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug-remote/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/MHEGRU.dir/src/MHEAAN/HERNN.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHEGRU.dir/src/MHEAAN/HERNN.cpp.o -c /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/HERNN.cpp
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/HERNN.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHEGRU.dir/src/MHEAAN/HERNN.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/HERNN.cpp > CMakeFiles/MHEGRU.dir/src/MHEAAN/HERNN.cpp.i
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/HERNN.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHEGRU.dir/src/MHEAAN/HERNN.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/HERNN.cpp -o CMakeFiles/MHEGRU.dir/src/MHEAAN/HERNN.cpp.s
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/HERNN.cpp.o.requires:
+
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/HERNN.cpp.o.requires
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/HERNN.cpp.o.provides: CMakeFiles/MHEGRU.dir/src/MHEAAN/HERNN.cpp.o.requires
+	$(MAKE) -f CMakeFiles/MHEGRU.dir/build.make CMakeFiles/MHEGRU.dir/src/MHEAAN/HERNN.cpp.o.provides.build
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/HERNN.cpp.o.provides
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/HERNN.cpp.o.provides.build: CMakeFiles/MHEGRU.dir/src/MHEAAN/HERNN.cpp.o
+
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Key.cpp.o: CMakeFiles/MHEGRU.dir/flags.make
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Key.cpp.o: ../src/MHEAAN/Key.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug-remote/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/MHEGRU.dir/src/MHEAAN/Key.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHEGRU.dir/src/MHEAAN/Key.cpp.o -c /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/Key.cpp
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Key.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHEGRU.dir/src/MHEAAN/Key.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/Key.cpp > CMakeFiles/MHEGRU.dir/src/MHEAAN/Key.cpp.i
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Key.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHEGRU.dir/src/MHEAAN/Key.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/Key.cpp -o CMakeFiles/MHEGRU.dir/src/MHEAAN/Key.cpp.s
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Key.cpp.o.requires:
+
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/Key.cpp.o.requires
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Key.cpp.o.provides: CMakeFiles/MHEGRU.dir/src/MHEAAN/Key.cpp.o.requires
+	$(MAKE) -f CMakeFiles/MHEGRU.dir/build.make CMakeFiles/MHEGRU.dir/src/MHEAAN/Key.cpp.o.provides.build
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/Key.cpp.o.provides
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Key.cpp.o.provides.build: CMakeFiles/MHEGRU.dir/src/MHEAAN/Key.cpp.o
+
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/MHEAAN.cpp.o: CMakeFiles/MHEGRU.dir/flags.make
+CMakeFiles/MHEGRU.dir/src/MHEAAN/MHEAAN.cpp.o: ../src/MHEAAN/MHEAAN.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug-remote/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/MHEGRU.dir/src/MHEAAN/MHEAAN.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHEGRU.dir/src/MHEAAN/MHEAAN.cpp.o -c /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/MHEAAN.cpp
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/MHEAAN.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHEGRU.dir/src/MHEAAN/MHEAAN.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/MHEAAN.cpp > CMakeFiles/MHEGRU.dir/src/MHEAAN/MHEAAN.cpp.i
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/MHEAAN.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHEGRU.dir/src/MHEAAN/MHEAAN.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/MHEAAN.cpp -o CMakeFiles/MHEGRU.dir/src/MHEAAN/MHEAAN.cpp.s
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/MHEAAN.cpp.o.requires:
+
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/MHEAAN.cpp.o.requires
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/MHEAAN.cpp.o.provides: CMakeFiles/MHEGRU.dir/src/MHEAAN/MHEAAN.cpp.o.requires
+	$(MAKE) -f CMakeFiles/MHEGRU.dir/build.make CMakeFiles/MHEGRU.dir/src/MHEAAN/MHEAAN.cpp.o.provides.build
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/MHEAAN.cpp.o.provides
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/MHEAAN.cpp.o.provides.build: CMakeFiles/MHEGRU.dir/src/MHEAAN/MHEAAN.cpp.o
+
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Plaintext.cpp.o: CMakeFiles/MHEGRU.dir/flags.make
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Plaintext.cpp.o: ../src/MHEAAN/Plaintext.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug-remote/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/MHEGRU.dir/src/MHEAAN/Plaintext.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHEGRU.dir/src/MHEAAN/Plaintext.cpp.o -c /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/Plaintext.cpp
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Plaintext.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHEGRU.dir/src/MHEAAN/Plaintext.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/Plaintext.cpp > CMakeFiles/MHEGRU.dir/src/MHEAAN/Plaintext.cpp.i
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Plaintext.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHEGRU.dir/src/MHEAAN/Plaintext.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/Plaintext.cpp -o CMakeFiles/MHEGRU.dir/src/MHEAAN/Plaintext.cpp.s
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Plaintext.cpp.o.requires:
+
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/Plaintext.cpp.o.requires
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Plaintext.cpp.o.provides: CMakeFiles/MHEGRU.dir/src/MHEAAN/Plaintext.cpp.o.requires
+	$(MAKE) -f CMakeFiles/MHEGRU.dir/build.make CMakeFiles/MHEGRU.dir/src/MHEAAN/Plaintext.cpp.o.provides.build
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/Plaintext.cpp.o.provides
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Plaintext.cpp.o.provides.build: CMakeFiles/MHEGRU.dir/src/MHEAAN/Plaintext.cpp.o
+
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Ring.cpp.o: CMakeFiles/MHEGRU.dir/flags.make
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Ring.cpp.o: ../src/MHEAAN/Ring.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug-remote/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/MHEGRU.dir/src/MHEAAN/Ring.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHEGRU.dir/src/MHEAAN/Ring.cpp.o -c /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/Ring.cpp
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Ring.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHEGRU.dir/src/MHEAAN/Ring.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/Ring.cpp > CMakeFiles/MHEGRU.dir/src/MHEAAN/Ring.cpp.i
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Ring.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHEGRU.dir/src/MHEAAN/Ring.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/Ring.cpp -o CMakeFiles/MHEGRU.dir/src/MHEAAN/Ring.cpp.s
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Ring.cpp.o.requires:
+
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/Ring.cpp.o.requires
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Ring.cpp.o.provides: CMakeFiles/MHEGRU.dir/src/MHEAAN/Ring.cpp.o.requires
+	$(MAKE) -f CMakeFiles/MHEGRU.dir/build.make CMakeFiles/MHEGRU.dir/src/MHEAAN/Ring.cpp.o.provides.build
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/Ring.cpp.o.provides
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Ring.cpp.o.provides.build: CMakeFiles/MHEGRU.dir/src/MHEAAN/Ring.cpp.o
+
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/RingMultiplier.cpp.o: CMakeFiles/MHEGRU.dir/flags.make
+CMakeFiles/MHEGRU.dir/src/MHEAAN/RingMultiplier.cpp.o: ../src/MHEAAN/RingMultiplier.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug-remote/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/MHEGRU.dir/src/MHEAAN/RingMultiplier.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHEGRU.dir/src/MHEAAN/RingMultiplier.cpp.o -c /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/RingMultiplier.cpp
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/RingMultiplier.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHEGRU.dir/src/MHEAAN/RingMultiplier.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/RingMultiplier.cpp > CMakeFiles/MHEGRU.dir/src/MHEAAN/RingMultiplier.cpp.i
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/RingMultiplier.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHEGRU.dir/src/MHEAAN/RingMultiplier.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/RingMultiplier.cpp -o CMakeFiles/MHEGRU.dir/src/MHEAAN/RingMultiplier.cpp.s
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/RingMultiplier.cpp.o.requires:
+
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/RingMultiplier.cpp.o.requires
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/RingMultiplier.cpp.o.provides: CMakeFiles/MHEGRU.dir/src/MHEAAN/RingMultiplier.cpp.o.requires
+	$(MAKE) -f CMakeFiles/MHEGRU.dir/build.make CMakeFiles/MHEGRU.dir/src/MHEAAN/RingMultiplier.cpp.o.provides.build
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/RingMultiplier.cpp.o.provides
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/RingMultiplier.cpp.o.provides.build: CMakeFiles/MHEGRU.dir/src/MHEAAN/RingMultiplier.cpp.o
+
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Scheme.cpp.o: CMakeFiles/MHEGRU.dir/flags.make
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Scheme.cpp.o: ../src/MHEAAN/Scheme.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug-remote/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/MHEGRU.dir/src/MHEAAN/Scheme.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHEGRU.dir/src/MHEAAN/Scheme.cpp.o -c /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/Scheme.cpp
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Scheme.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHEGRU.dir/src/MHEAAN/Scheme.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/Scheme.cpp > CMakeFiles/MHEGRU.dir/src/MHEAAN/Scheme.cpp.i
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Scheme.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHEGRU.dir/src/MHEAAN/Scheme.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/Scheme.cpp -o CMakeFiles/MHEGRU.dir/src/MHEAAN/Scheme.cpp.s
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Scheme.cpp.o.requires:
+
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/Scheme.cpp.o.requires
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Scheme.cpp.o.provides: CMakeFiles/MHEGRU.dir/src/MHEAAN/Scheme.cpp.o.requires
+	$(MAKE) -f CMakeFiles/MHEGRU.dir/build.make CMakeFiles/MHEGRU.dir/src/MHEAAN/Scheme.cpp.o.provides.build
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/Scheme.cpp.o.provides
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/Scheme.cpp.o.provides.build: CMakeFiles/MHEGRU.dir/src/MHEAAN/Scheme.cpp.o
+
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/SecretKey.cpp.o: CMakeFiles/MHEGRU.dir/flags.make
+CMakeFiles/MHEGRU.dir/src/MHEAAN/SecretKey.cpp.o: ../src/MHEAAN/SecretKey.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug-remote/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/MHEGRU.dir/src/MHEAAN/SecretKey.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHEGRU.dir/src/MHEAAN/SecretKey.cpp.o -c /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/SecretKey.cpp
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/SecretKey.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHEGRU.dir/src/MHEAAN/SecretKey.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/SecretKey.cpp > CMakeFiles/MHEGRU.dir/src/MHEAAN/SecretKey.cpp.i
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/SecretKey.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHEGRU.dir/src/MHEAAN/SecretKey.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/SecretKey.cpp -o CMakeFiles/MHEGRU.dir/src/MHEAAN/SecretKey.cpp.s
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/SecretKey.cpp.o.requires:
+
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/SecretKey.cpp.o.requires
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/SecretKey.cpp.o.provides: CMakeFiles/MHEGRU.dir/src/MHEAAN/SecretKey.cpp.o.requires
+	$(MAKE) -f CMakeFiles/MHEGRU.dir/build.make CMakeFiles/MHEGRU.dir/src/MHEAAN/SecretKey.cpp.o.provides.build
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/SecretKey.cpp.o.provides
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/SecretKey.cpp.o.provides.build: CMakeFiles/MHEGRU.dir/src/MHEAAN/SecretKey.cpp.o
+
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/SerializationUtils.cpp.o: CMakeFiles/MHEGRU.dir/flags.make
+CMakeFiles/MHEGRU.dir/src/MHEAAN/SerializationUtils.cpp.o: ../src/MHEAAN/SerializationUtils.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug-remote/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/MHEGRU.dir/src/MHEAAN/SerializationUtils.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHEGRU.dir/src/MHEAAN/SerializationUtils.cpp.o -c /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/SerializationUtils.cpp
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/SerializationUtils.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHEGRU.dir/src/MHEAAN/SerializationUtils.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/SerializationUtils.cpp > CMakeFiles/MHEGRU.dir/src/MHEAAN/SerializationUtils.cpp.i
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/SerializationUtils.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHEGRU.dir/src/MHEAAN/SerializationUtils.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/SerializationUtils.cpp -o CMakeFiles/MHEGRU.dir/src/MHEAAN/SerializationUtils.cpp.s
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/SerializationUtils.cpp.o.requires:
+
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/SerializationUtils.cpp.o.requires
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/SerializationUtils.cpp.o.provides: CMakeFiles/MHEGRU.dir/src/MHEAAN/SerializationUtils.cpp.o.requires
+	$(MAKE) -f CMakeFiles/MHEGRU.dir/build.make CMakeFiles/MHEGRU.dir/src/MHEAAN/SerializationUtils.cpp.o.provides.build
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/SerializationUtils.cpp.o.provides
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/SerializationUtils.cpp.o.provides.build: CMakeFiles/MHEGRU.dir/src/MHEAAN/SerializationUtils.cpp.o
+
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/SqrMatContext.cpp.o: CMakeFiles/MHEGRU.dir/flags.make
+CMakeFiles/MHEGRU.dir/src/MHEAAN/SqrMatContext.cpp.o: ../src/MHEAAN/SqrMatContext.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug-remote/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/MHEGRU.dir/src/MHEAAN/SqrMatContext.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHEGRU.dir/src/MHEAAN/SqrMatContext.cpp.o -c /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/SqrMatContext.cpp
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/SqrMatContext.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHEGRU.dir/src/MHEAAN/SqrMatContext.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/SqrMatContext.cpp > CMakeFiles/MHEGRU.dir/src/MHEAAN/SqrMatContext.cpp.i
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/SqrMatContext.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHEGRU.dir/src/MHEAAN/SqrMatContext.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/SqrMatContext.cpp -o CMakeFiles/MHEGRU.dir/src/MHEAAN/SqrMatContext.cpp.s
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/SqrMatContext.cpp.o.requires:
+
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/SqrMatContext.cpp.o.requires
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/SqrMatContext.cpp.o.provides: CMakeFiles/MHEGRU.dir/src/MHEAAN/SqrMatContext.cpp.o.requires
+	$(MAKE) -f CMakeFiles/MHEGRU.dir/build.make CMakeFiles/MHEGRU.dir/src/MHEAAN/SqrMatContext.cpp.o.provides.build
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/SqrMatContext.cpp.o.provides
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/SqrMatContext.cpp.o.provides.build: CMakeFiles/MHEGRU.dir/src/MHEAAN/SqrMatContext.cpp.o
+
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.o: CMakeFiles/MHEGRU.dir/flags.make
+CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.o: ../src/MHEAAN/StringUtils.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug-remote/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.o -c /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/StringUtils.cpp
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/StringUtils.cpp > CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.i
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/StringUtils.cpp -o CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.s
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.o.requires:
+
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.o.requires
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.o.provides: CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.o.requires
+	$(MAKE) -f CMakeFiles/MHEGRU.dir/build.make CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.o.provides.build
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.o.provides
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.o.provides.build: CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.o
+
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.o: CMakeFiles/MHEGRU.dir/flags.make
+CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.o: ../src/MHEAAN/TestScheme.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug-remote/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.o -c /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/TestScheme.cpp
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/TestScheme.cpp > CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.i
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/TestScheme.cpp -o CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.s
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.o.requires:
+
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.o.requires
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.o.provides: CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.o.requires
+	$(MAKE) -f CMakeFiles/MHEGRU.dir/build.make CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.o.provides.build
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.o.provides
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.o.provides.build: CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.o
+
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.o: CMakeFiles/MHEGRU.dir/flags.make
+CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.o: ../src/MHEAAN/TimeUtils.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug-remote/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.o -c /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/TimeUtils.cpp
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/TimeUtils.cpp > CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.i
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hukla/CLionProjects/MHEGRU/src/MHEAAN/TimeUtils.cpp -o CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.s
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.o.requires:
+
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.o.requires
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.o.provides: CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.o.requires
+	$(MAKE) -f CMakeFiles/MHEGRU.dir/build.make CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.o.provides.build
+.PHONY : CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.o.provides
+
+CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.o.provides.build: CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.o
+
+
+CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o: CMakeFiles/MHEGRU.dir/flags.make
+CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o: ../src/AddingProblem.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug-remote/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o -c /home/hukla/CLionProjects/MHEGRU/src/AddingProblem.cpp
+
+CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hukla/CLionProjects/MHEGRU/src/AddingProblem.cpp > CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.i
+
+CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hukla/CLionProjects/MHEGRU/src/AddingProblem.cpp -o CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.s
+
+CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o.requires:
+
+.PHONY : CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o.requires
+
+CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o.provides: CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o.requires
+	$(MAKE) -f CMakeFiles/MHEGRU.dir/build.make CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o.provides.build
+.PHONY : CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o.provides
+
+CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o.provides.build: CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o
+
+
+CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o: CMakeFiles/MHEGRU.dir/flags.make
+CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o: ../src/HERNN.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug-remote/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o -c /home/hukla/CLionProjects/MHEGRU/src/HERNN.cpp
+
+CMakeFiles/MHEGRU.dir/src/HERNN.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHEGRU.dir/src/HERNN.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hukla/CLionProjects/MHEGRU/src/HERNN.cpp > CMakeFiles/MHEGRU.dir/src/HERNN.cpp.i
+
+CMakeFiles/MHEGRU.dir/src/HERNN.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHEGRU.dir/src/HERNN.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hukla/CLionProjects/MHEGRU/src/HERNN.cpp -o CMakeFiles/MHEGRU.dir/src/HERNN.cpp.s
+
+CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o.requires:
+
+.PHONY : CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o.requires
+
+CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o.provides: CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o.requires
+	$(MAKE) -f CMakeFiles/MHEGRU.dir/build.make CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o.provides.build
+.PHONY : CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o.provides
+
+CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o.provides.build: CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o
+
+
 CMakeFiles/MHEGRU.dir/src/MHEAddingProblem.cpp.o: CMakeFiles/MHEGRU.dir/flags.make
 CMakeFiles/MHEGRU.dir/src/MHEAddingProblem.cpp.o: ../src/MHEAddingProblem.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug-remote/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/MHEGRU.dir/src/MHEAddingProblem.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug-remote/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/MHEGRU.dir/src/MHEAddingProblem.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHEGRU.dir/src/MHEAddingProblem.cpp.o -c /home/hukla/CLionProjects/MHEGRU/src/MHEAddingProblem.cpp
 
 CMakeFiles/MHEGRU.dir/src/MHEAddingProblem.cpp.i: cmake_force
@@ -83,15 +515,51 @@ CMakeFiles/MHEGRU.dir/src/MHEAddingProblem.cpp.o.provides.build: CMakeFiles/MHEG
 
 # Object files for target MHEGRU
 MHEGRU_OBJECTS = \
+"CMakeFiles/MHEGRU.dir/src/MHEAAN/BootContext.cpp.o" \
+"CMakeFiles/MHEGRU.dir/src/MHEAAN/Ciphertext.cpp.o" \
+"CMakeFiles/MHEGRU.dir/src/MHEAAN/EvaluatorUtils.cpp.o" \
+"CMakeFiles/MHEGRU.dir/src/MHEAAN/HERNN.cpp.o" \
+"CMakeFiles/MHEGRU.dir/src/MHEAAN/Key.cpp.o" \
+"CMakeFiles/MHEGRU.dir/src/MHEAAN/MHEAAN.cpp.o" \
+"CMakeFiles/MHEGRU.dir/src/MHEAAN/Plaintext.cpp.o" \
+"CMakeFiles/MHEGRU.dir/src/MHEAAN/Ring.cpp.o" \
+"CMakeFiles/MHEGRU.dir/src/MHEAAN/RingMultiplier.cpp.o" \
+"CMakeFiles/MHEGRU.dir/src/MHEAAN/Scheme.cpp.o" \
+"CMakeFiles/MHEGRU.dir/src/MHEAAN/SecretKey.cpp.o" \
+"CMakeFiles/MHEGRU.dir/src/MHEAAN/SerializationUtils.cpp.o" \
+"CMakeFiles/MHEGRU.dir/src/MHEAAN/SqrMatContext.cpp.o" \
+"CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.o" \
+"CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.o" \
+"CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.o" \
+"CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o" \
+"CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o" \
 "CMakeFiles/MHEGRU.dir/src/MHEAddingProblem.cpp.o"
 
 # External object files for target MHEGRU
 MHEGRU_EXTERNAL_OBJECTS =
 
+MHEGRU: CMakeFiles/MHEGRU.dir/src/MHEAAN/BootContext.cpp.o
+MHEGRU: CMakeFiles/MHEGRU.dir/src/MHEAAN/Ciphertext.cpp.o
+MHEGRU: CMakeFiles/MHEGRU.dir/src/MHEAAN/EvaluatorUtils.cpp.o
+MHEGRU: CMakeFiles/MHEGRU.dir/src/MHEAAN/HERNN.cpp.o
+MHEGRU: CMakeFiles/MHEGRU.dir/src/MHEAAN/Key.cpp.o
+MHEGRU: CMakeFiles/MHEGRU.dir/src/MHEAAN/MHEAAN.cpp.o
+MHEGRU: CMakeFiles/MHEGRU.dir/src/MHEAAN/Plaintext.cpp.o
+MHEGRU: CMakeFiles/MHEGRU.dir/src/MHEAAN/Ring.cpp.o
+MHEGRU: CMakeFiles/MHEGRU.dir/src/MHEAAN/RingMultiplier.cpp.o
+MHEGRU: CMakeFiles/MHEGRU.dir/src/MHEAAN/Scheme.cpp.o
+MHEGRU: CMakeFiles/MHEGRU.dir/src/MHEAAN/SecretKey.cpp.o
+MHEGRU: CMakeFiles/MHEGRU.dir/src/MHEAAN/SerializationUtils.cpp.o
+MHEGRU: CMakeFiles/MHEGRU.dir/src/MHEAAN/SqrMatContext.cpp.o
+MHEGRU: CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.o
+MHEGRU: CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.o
+MHEGRU: CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.o
+MHEGRU: CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o
+MHEGRU: CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o
 MHEGRU: CMakeFiles/MHEGRU.dir/src/MHEAddingProblem.cpp.o
 MHEGRU: CMakeFiles/MHEGRU.dir/build.make
 MHEGRU: CMakeFiles/MHEGRU.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug-remote/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable MHEGRU"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug-remote/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX executable MHEGRU"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/MHEGRU.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -99,6 +567,24 @@ CMakeFiles/MHEGRU.dir/build: MHEGRU
 
 .PHONY : CMakeFiles/MHEGRU.dir/build
 
+CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/MHEAAN/BootContext.cpp.o.requires
+CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/MHEAAN/Ciphertext.cpp.o.requires
+CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/MHEAAN/EvaluatorUtils.cpp.o.requires
+CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/MHEAAN/HERNN.cpp.o.requires
+CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/MHEAAN/Key.cpp.o.requires
+CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/MHEAAN/MHEAAN.cpp.o.requires
+CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/MHEAAN/Plaintext.cpp.o.requires
+CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/MHEAAN/Ring.cpp.o.requires
+CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/MHEAAN/RingMultiplier.cpp.o.requires
+CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/MHEAAN/Scheme.cpp.o.requires
+CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/MHEAAN/SecretKey.cpp.o.requires
+CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/MHEAAN/SerializationUtils.cpp.o.requires
+CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/MHEAAN/SqrMatContext.cpp.o.requires
+CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.o.requires
+CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.o.requires
+CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.o.requires
+CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o.requires
+CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o.requires
 CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/MHEAddingProblem.cpp.o.requires
 
 .PHONY : CMakeFiles/MHEGRU.dir/requires
