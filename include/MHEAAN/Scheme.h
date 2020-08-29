@@ -24,7 +24,7 @@ public:
 
 	bool isSerialized;
 
-	Ring& ring;
+	Ring* ring;
 
 	map<long, Key&> keyMap;
 	map<pair<long, long>, Key&> leftRotKeyMap;
@@ -35,7 +35,7 @@ public:
 
 	Scheme(SecretKey& secretKey, Ring& ring, bool isSerialized = false);
 
-    Scheme();
+    Scheme() {};
 
 
     //----------------------------------------------------------------------------------

@@ -8,13 +8,20 @@ using namespace std;
 
 class HERNN {
 private:
-    HERNN(SecretKey secretKey, Scheme scheme);
+//    HERNN(SecretKey secretKey, Scheme scheme);
 
-    SecretKey secretKey;
-    Scheme scheme;
+    SecretKey* secretKey;
+    Scheme* scheme;
 
-    double sigmoid_coeff[5] = {0.5, 1.73496, -4.19407, 5.43402, -2.50739};
+    // sigmoid coefficients
+    double sigmoid3[3] = {0.5,0.1424534,-0.0013186};
+    double sigmoid5[4] = {-0.5,0.19131,-0.0045963, 0.0000412332};
+    double sigmoid7[5] = {0.5,0.216884,-0.00819276,0.000165861,-0.00000119581};
+
+    // tanh coefficients
+    double tanh5[4] = {0.0,0.667391,-0.0440927,0.0010599};
     double tanh_coeff[4] = {1, -8.49814, 11.99804, -6.49478};
+
 
 public:
 	HERNN(SecretKey& secretKey, Scheme& scheme);
@@ -62,6 +69,7 @@ public:
 	void printtr(Ciphertext& x, string name);
 	void prints(Ciphertext& x, string name);
 
+    void evalSigmoid(Ciphertext &cipher, int order);
 };
 
 #endif /* HERNN_H_ */

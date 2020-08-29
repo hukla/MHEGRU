@@ -20,3 +20,4 @@ add_executable(MHEGRU ${MHEAAN_SOURCES} ${SOURCES})
 # external libs
 #add_subdirectory(./libs/Logger)
 #target_link_directories(binary logger)
+target_link_libraries(MHEGRU -lpthread ntl m gmp)

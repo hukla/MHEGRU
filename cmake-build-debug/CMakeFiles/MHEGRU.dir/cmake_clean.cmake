@@ -15,7 +15,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.o"
   "CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.o"
   "CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.o"
-  "CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o"
   "CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o"
   "CMakeFiles/MHEGRU.dir/src/MHEAddingProblem.cpp.o"
   "MHEGRU.pdb"

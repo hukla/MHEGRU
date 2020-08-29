@@ -441,33 +441,9 @@ CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.o.provides: CMakeFiles/MHEGRU.dir
 CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.o.provides.build: CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.o
 
 
-CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o: CMakeFiles/MHEGRU.dir/flags.make
-CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o: ../src/AddingProblem.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o -c /home/hukla/CLionProjects/MHEGRU/src/AddingProblem.cpp
-
-CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hukla/CLionProjects/MHEGRU/src/AddingProblem.cpp > CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.i
-
-CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hukla/CLionProjects/MHEGRU/src/AddingProblem.cpp -o CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.s
-
-CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o.requires:
-
-.PHONY : CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o.requires
-
-CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o.provides: CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o.requires
-	$(MAKE) -f CMakeFiles/MHEGRU.dir/build.make CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o.provides.build
-.PHONY : CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o.provides
-
-CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o.provides.build: CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o
-
-
 CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o: CMakeFiles/MHEGRU.dir/flags.make
 CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o: ../src/HERNN.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o -c /home/hukla/CLionProjects/MHEGRU/src/HERNN.cpp
 
 CMakeFiles/MHEGRU.dir/src/HERNN.cpp.i: cmake_force
@@ -491,7 +467,7 @@ CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o.provides.build: CMakeFiles/MHEGRU.dir/src/
 
 CMakeFiles/MHEGRU.dir/src/MHEAddingProblem.cpp.o: CMakeFiles/MHEGRU.dir/flags.make
 CMakeFiles/MHEGRU.dir/src/MHEAddingProblem.cpp.o: ../src/MHEAddingProblem.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/MHEGRU.dir/src/MHEAddingProblem.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/MHEGRU.dir/src/MHEAddingProblem.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHEGRU.dir/src/MHEAddingProblem.cpp.o -c /home/hukla/CLionProjects/MHEGRU/src/MHEAddingProblem.cpp
 
 CMakeFiles/MHEGRU.dir/src/MHEAddingProblem.cpp.i: cmake_force
@@ -531,7 +507,6 @@ MHEGRU_OBJECTS = \
 "CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.o" \
 "CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.o" \
 "CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.o" \
-"CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o" \
 "CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o" \
 "CMakeFiles/MHEGRU.dir/src/MHEAddingProblem.cpp.o"
 
@@ -554,12 +529,11 @@ MHEGRU: CMakeFiles/MHEGRU.dir/src/MHEAAN/SqrMatContext.cpp.o
 MHEGRU: CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.o
 MHEGRU: CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.o
 MHEGRU: CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.o
-MHEGRU: CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o
 MHEGRU: CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o
 MHEGRU: CMakeFiles/MHEGRU.dir/src/MHEAddingProblem.cpp.o
 MHEGRU: CMakeFiles/MHEGRU.dir/build.make
 MHEGRU: CMakeFiles/MHEGRU.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX executable MHEGRU"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hukla/CLionProjects/MHEGRU/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Linking CXX executable MHEGRU"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/MHEGRU.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -583,7 +557,6 @@ CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/MHEAAN/SqrMatContext.c
 CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/MHEAAN/StringUtils.cpp.o.requires
 CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/MHEAAN/TestScheme.cpp.o.requires
 CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/MHEAAN/TimeUtils.cpp.o.requires
-CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/AddingProblem.cpp.o.requires
 CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/HERNN.cpp.o.requires
 CMakeFiles/MHEGRU.dir/requires: CMakeFiles/MHEGRU.dir/src/MHEAddingProblem.cpp.o.requires
 

@@ -251,8 +251,10 @@ MHEAddingProblem::MHEAddingProblem() {
 MHEAddingProblem::MHEAddingProblem(int hiddenSize, int inputSize, int numClass, int bptt) : hiddenSize(hiddenSize),
                                                                                             inputSize(inputSize),
                                                                                             numClass(numClass), bptt(bptt){
+    SetNumThreads(16);
     // generate
     timeutils.start("Generating");
+    ring = Ring();
     secretKey = SecretKey(ring);
 
     //initialize scheme
@@ -323,10 +325,20 @@ void MHEAddingProblem::loadWeights(string path) {
 
 void MHEAddingProblem::forward(string input_path) {
     // load input file
-    double **sequence = new double *[bptt]; // input sequence, shape: (6, 2)
+    double **sequence = new double *[bptt]; // input sequence, shape: (bptt, 2)
     for (int i = 0; i < bptt; ++i) sequence[i] = new double[inputSize];
-    loadMatrix(sequence, input_path);
-    printM(sequence, "input", bptt, 2);
+    double *operands = new double[2];
+    loadMatrix(sequence, input_path+"input.csv");
+    int operand_count = 0;
+    for (int i = 0; i < bptt; i++) {
+        if (sequence[i][1] == 1) {
+            operands[operand_count++] = sequence[i][0];
+        }
+        if (operand_count == 2) {
+            break;
+        }
+    }
+    printv(operands, "input", 2);
 
     double **hidden = new double *[bptt + 1]; // hidden state, shape: (6, 64)
     for (int i = 0; i < bptt + 1; ++i) hidden[i] = new double[hiddenSize]();
@@ -370,6 +382,9 @@ void MHEAddingProblem::forward(string input_path) {
 
     hernn.encryptVx(enc_hidden, hidden[0], hiddenSize, logp, logQ);
 
+    double **hidden_plaintext = new double *[bptt + 1]; // hidden state, shape: (6, 64)
+    for (int i = 0; i < bptt + 1; ++i) hidden_plaintext[i] = new double[hiddenSize]();
+
     /* GRU forward */
     for (int t = 0; t < bptt; ++t) {
         timeutils.start("forward gru step " + to_string(t));
@@ -383,8 +398,8 @@ void MHEAddingProblem::forward(string input_path) {
         hernn.evalAdd(enc_r, enc_Wrx, enc_Urh); // r = WrX + UrH
         scheme.modDownTo(tmp, enc_br, enc_r.logq); // ?????
         hernn.evalAddAndEqual(enc_r, tmp); // r = WrX + UrH + br
-
         hernn.evalSigmoid(enc_r); // r = sigmoid(WrX + UrH + br)
+        hernn.printtr(enc_r, "r gate");
 //        printv(r, "reset_gate @ step " + to_string(t + 1), hiddenSize);
 
         /* z = sigmoid(WzX + UzH + bz) */
@@ -394,7 +409,8 @@ void MHEAddingProblem::forward(string input_path) {
         scheme.modDownTo(tmp, enc_bz, enc_z.logq);
         hernn.evalAddAndEqual(enc_z, tmp); // z = WzX + UzH + bz
 
-        evalSigmoid(z, hiddenSize); // z = sigmoid(WzX + UzH + bz)
+        hernn.evalSigmoid(enc_z); // z = sigmoid(WzX + UzH + bz)
+        hernn.printtr(enc_z, "z gate");
 //        printv(z, "update_gate @ step " + to_string(t + 1), hiddenSize);
 
         /* g = tanh(WgX + Ug(r * H) + bg) */
@@ -407,6 +423,7 @@ void MHEAddingProblem::forward(string input_path) {
         scheme.modDownToAndEqual(enc_bh, enc_g.logq);
         hernn.evalAddAndEqual(enc_g, enc_bh); // g = WgX + Ug(r * H) + bg
         hernn.evalTanh(enc_g); // g = tanh(WgX + Ug(r * H) + bg)
+        hernn.printtr(enc_g, "g gate");
 
         /* hidden[t+1] = (1 - z) * g + z * h */
         hernn.evalOnem(enc_z1, enc_z, logp); // z1 = 1 - z
@@ -421,6 +438,7 @@ void MHEAddingProblem::forward(string input_path) {
 
 
         if(enc_htr.logq < logq1 && t < bptt - 1) {
+//        if(t < bptt - 1) {
             timeutils.start("bootstrap");
             long tmpn0 = enc_htr.n0;
             long tmpn1 = enc_htr.n1;
@@ -434,8 +452,12 @@ void MHEAddingProblem::forward(string input_path) {
         if(t < bptt - 1) {
             hernn.evalTrx2(enc_hidden, enc_htr, diag);
         }
-        timeutils.start("forward gru step " + to_string(t));
-        hernn.printtr(enc_htr, "gru step " + to_string(t));
+        timeutils.stop("forward gru step " + to_string(t));
+        hernn.printtr(enc_htr, "hidden ciphertext @ gru step " + to_string(t));
+
+        // compare with plaintext hidden
+        loadMatrix(hidden_plaintext, input_path+"hidden_"+to_string(t)+".csv");
+        printM(hidden_plaintext, "hidden_plaintext", 1, hiddenSize);
     }
 
     /* fc forward */
@@ -447,7 +469,7 @@ void MHEAddingProblem::forward(string input_path) {
     hernn.evalAddAndEqual(enc_output, enc_FWh);
     timeutils.stop("forward fc");
 
-    hernn.print(enc_output, "cipehr_logit");
+    hernn.print(enc_output, "cipher_logit");
 
 }
 
@@ -473,13 +495,13 @@ void MHEAddingProblem::encryptWeights() {
 
 
 int main() {
-    int hiddenSize = 64, inputSize = 2, numClass = 1, bptt = 200;
+    int hiddenSize = 64, inputSize = 2, numClass = 1, bptt = 6;
     MHEAddingProblem *model = new MHEAddingProblem(hiddenSize, inputSize, numClass, bptt);
-    string path = "/home/hukla/CLionProjects/MHEGRU/addingProblem/";
+    string path = "/home/hukla/CLionProjects/MHEGRU/addingProblem_6/";
     model->loadWeights(path);
     model->encryptWeights();
 
-    model->forward(path + "input_0/input.csv");
+    model->forward(path + "input_0/");
 
     double *originalOutput = new double[numClass];
     loadVector(originalOutput, path + "input_0/output.csv");

@@ -136,32 +136,6 @@ MHEAAN/SecretKey.h
 MHEAAN/Scheme.h
 .././src/MHEAAN/Scheme.h
 
-/home/hukla/CLionProjects/MHEGRU/src/AddingProblem.cpp
-AddingProblem.h
-/home/hukla/CLionProjects/MHEGRU/src/AddingProblem.h
-
-/home/hukla/CLionProjects/MHEGRU/src/AddingProblem.h
-NTL/ZZ.h
--
-math.h
--
-fstream
--
-iostream
--
-string
--
-vector
--
-algorithm
--
-array
--
-random
--
-chrono
--
-
 /home/hukla/CLionProjects/MHEGRU/src/HERNN.cpp
 
 /home/hukla/CLionProjects/MHEGRU/src/HERNN.h
