@@ -34,3 +34,4 @@
 # Cmake directories
 cmake-build-debug
 cmake-build-debug-remote
+.vscode
