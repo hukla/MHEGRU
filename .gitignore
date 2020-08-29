@@ -30,7 +30,3 @@
 *.exe
 *.out
 *.app
-
-# Cmake folders
-cmake-build-debug-remote/
-cmake-build-debug
