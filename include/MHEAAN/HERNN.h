@@ -14,13 +14,13 @@ private:
     Scheme* scheme;
 
     // sigmoid coefficients
-    double sigmoid3[3] = {0.5,0.1424534,-0.0013186};
-    double sigmoid5[4] = {-0.5,0.19131,-0.0045963, 0.0000412332};
-    double sigmoid7[5] = {0.5,0.216884,-0.00819276,0.000165861,-0.00000119581};
+    double sigmoid3[3] = {0.5,0.1424534,-0.0013186}; // x in [-6, 6]
+    double sigmoid5[4] = {-0.5,0.19131,-0.0045963, 0.0000412332}; // x in [-4, 4]
+    double sigmoid7[5] = {0.5,0.216884,-0.00819276,0.000165861,-0.00000119581}; // x in [-7, 7]
 
     // tanh coefficients
     double tanh5[4] = {0.0,0.667391,-0.0440927,0.0010599};
-    double tanh_coeff[4] = {1, -8.49814, 11.99804, -6.49478};
+    double tanh7[5] = {0, 1, -8.49814/pow(3.46992,3), 11.99804/pow(3.46992,5), -6.49478/pow(3.46992,7)};
 
 
 public:
@@ -57,7 +57,7 @@ public:
 	void evalMulAndEqual(Ciphertext& cipher1, Ciphertext& cipher2);
 	void evalOnem(Ciphertext& res, Ciphertext& cipher, long logp);
 	void evalSigmoid(Ciphertext& cipher);
-	void evalTanh(Ciphertext& cipher);
+	void evalTanh(Ciphertext& cipher, int order);
 
 	void evalTrx1(Ciphertext& res, Ciphertext& c, Plaintext& diag);
 	void evalTrx2(Ciphertext& res, Ciphertext& c, Plaintext& diag);

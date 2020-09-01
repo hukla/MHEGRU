@@ -383,7 +383,7 @@ void Scheme::addConst(Ciphertext& res, Ciphertext& cipher, RR& cnst, long logp) 
 /// inplace constant addition : cipher = cnst + cipher
 /// \param cipher contains source & dest ciphertext to calculate (Ciphertext&)
 /// \param cnst contains constant value to be added (double)
-/// \param logp contains constant scale factor (long)
+/// \param logp contains constant scale factor (long); has to be the same with cipher.logp
 void Scheme::addConstAndEqual(Ciphertext& cipher, double cnst, long logp) {
 	ZZ q = ring->qvec[cipher.logq];
 	ZZ cnstZZ = logp < 0 ? -EvaluatorUtils::scaleUpToZZ(cnst, cipher.logp) : -EvaluatorUtils::scaleUpToZZ(cnst, logp);

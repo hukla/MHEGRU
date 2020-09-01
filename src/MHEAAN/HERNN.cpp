@@ -1,15 +1,17 @@
 #include "HERNN.h"
 #include "Scheme.h"
 
-
-HERNN::HERNN(SecretKey& secretKey, Scheme& scheme) : secretKey(&secretKey), scheme(&scheme) {
+HERNN::HERNN(SecretKey &secretKey, Scheme &scheme) : secretKey(&secretKey), scheme(&scheme)
+{
 }
 
-
-void HERNN::encryptM(Ciphertext& res, double** M, long Mrow, long Mcol, long logp, long logq) {
-	double* tmp = new double[Mrow*Mcol]();
-	for (int i = 0; i < Mrow; ++i) {
-		for (int j = 0; j < Mcol; ++j) {
+void HERNN::encryptM(Ciphertext &res, double **M, long Mrow, long Mcol, long logp, long logq)
+{
+	double *tmp = new double[Mrow * Mcol]();
+	for (int i = 0; i < Mrow; ++i)
+	{
+		for (int j = 0; j < Mcol; ++j)
+		{
 			tmp[i + j * Mrow] = M[i][j];
 		}
 	}
@@ -17,10 +19,13 @@ void HERNN::encryptM(Ciphertext& res, double** M, long Mrow, long Mcol, long log
 	delete[] tmp;
 }
 
-void HERNN::encryptMt(Ciphertext& res, double** M, long Mrow, long Mcol, long logp, long logq) {
-	double* tmp = new double[Mrow*Mcol]();
-	for (int i = 0; i < Mrow; ++i) {
-		for (int j = 0; j < Mcol; ++j) {
+void HERNN::encryptMt(Ciphertext &res, double **M, long Mrow, long Mcol, long logp, long logq)
+{
+	double *tmp = new double[Mrow * Mcol]();
+	for (int i = 0; i < Mrow; ++i)
+	{
+		for (int j = 0; j < Mcol; ++j)
+		{
 			tmp[j + i * Mcol] = M[i][j];
 		}
 	}
@@ -28,12 +33,15 @@ void HERNN::encryptMt(Ciphertext& res, double** M, long Mrow, long Mcol, long lo
 	delete[] tmp;
 }
 
-void HERNN::encryptMx(Ciphertext& res, double** M, long Mrow, long Mcol, long logp, long logq) {
+void HERNN::encryptMx(Ciphertext &res, double **M, long Mrow, long Mcol, long logp, long logq)
+{
 	long Mrow2 = 1 << (long)ceil(log2(Mrow));
 	long Mcol2 = 1 << (long)ceil(log2(Mcol));
-	double* tmp = new double[Mrow2*Mcol2]();
-	for (int i = 0; i < Mrow; ++i) {
-		for (int j = 0; j < Mcol; ++j) {
+	double *tmp = new double[Mrow2 * Mcol2]();
+	for (int i = 0; i < Mrow; ++i)
+	{
+		for (int j = 0; j < Mcol; ++j)
+		{
 			tmp[i + j * Mrow2] = M[i][j];
 		}
 	}
@@ -41,12 +49,15 @@ void HERNN::encryptMx(Ciphertext& res, double** M, long Mrow, long Mcol, long lo
 	delete[] tmp;
 }
 
-void HERNN::encryptMxt(Ciphertext& res, double** M, long Mrow, long Mcol, long logp, long logq) {
+void HERNN::encryptMxt(Ciphertext &res, double **M, long Mrow, long Mcol, long logp, long logq)
+{
 	long Mrow2 = 1 << (long)ceil(log2(Mrow));
 	long Mcol2 = 1 << (long)ceil(log2(Mcol));
-	double* tmp = new double[Mrow2*Mcol2]();
-	for (int i = 0; i < Mrow; ++i) {
-		for (int j = 0; j < Mcol; ++j) {
+	double *tmp = new double[Mrow2 * Mcol2]();
+	for (int i = 0; i < Mrow; ++i)
+	{
+		for (int j = 0; j < Mcol; ++j)
+		{
 			tmp[j + i * Mcol2] = M[i][j];
 		}
 	}
@@ -54,82 +65,102 @@ void HERNN::encryptMxt(Ciphertext& res, double** M, long Mrow, long Mcol, long l
 	delete[] tmp;
 }
 
-void HERNN::encryptM2(Ciphertext& res1, Ciphertext& res2, double** M, long Mrow, long Mcol, long logp, long logq) {
-	double* tmp = new double[Mrow*Mcol/2]();
-	for (int i = 0; i < Mrow/2; ++i) {
-		for (int j = 0; j < Mcol; ++j) {
-			tmp[i + j * Mrow/2] = M[i][j];
+void HERNN::encryptM2(Ciphertext &res1, Ciphertext &res2, double **M, long Mrow, long Mcol, long logp, long logq)
+{
+	double *tmp = new double[Mrow * Mcol / 2]();
+	for (int i = 0; i < Mrow / 2; ++i)
+	{
+		for (int j = 0; j < Mcol; ++j)
+		{
+			tmp[i + j * Mrow / 2] = M[i][j];
 		}
 	}
-	scheme->encrypt(res1, tmp, Mrow/2, Mcol, logp, logq);
-	for (int i = 0; i < Mrow/2; ++i) {
-		for (int j = 0; j < Mcol; ++j) {
-			tmp[i + j * Mrow/2] = M[i + Mrow/2][j];
+	scheme->encrypt(res1, tmp, Mrow / 2, Mcol, logp, logq);
+	for (int i = 0; i < Mrow / 2; ++i)
+	{
+		for (int j = 0; j < Mcol; ++j)
+		{
+			tmp[i + j * Mrow / 2] = M[i + Mrow / 2][j];
 		}
 	}
-	scheme->encrypt(res2, tmp, Mrow/2, Mcol, logp, logq);
+	scheme->encrypt(res2, tmp, Mrow / 2, Mcol, logp, logq);
 	delete[] tmp;
 }
 
-void HERNN::encryptMt2(Ciphertext& res1, Ciphertext& res2, double** M, long Mrow, long Mcol, long logp, long logq) {
-	double* tmp = new double[Mrow*Mcol/2]();
-	for (int i = 0; i < Mrow; ++i) {
-		for (int j = 0; j < Mcol/2; ++j) {
-			tmp[j + i * Mcol/2] = M[i][j];
+void HERNN::encryptMt2(Ciphertext &res1, Ciphertext &res2, double **M, long Mrow, long Mcol, long logp, long logq)
+{
+	double *tmp = new double[Mrow * Mcol / 2]();
+	for (int i = 0; i < Mrow; ++i)
+	{
+		for (int j = 0; j < Mcol / 2; ++j)
+		{
+			tmp[j + i * Mcol / 2] = M[i][j];
 		}
 	}
-	scheme->encrypt(res1, tmp, Mcol/2, Mrow, logp, logq);
-	for (int i = 0; i < Mrow; ++i) {
-		for (int j = 0; j < Mcol/2; ++j) {
-			tmp[j + i * Mcol/2] = M[i][j+Mcol/2];
+	scheme->encrypt(res1, tmp, Mcol / 2, Mrow, logp, logq);
+	for (int i = 0; i < Mrow; ++i)
+	{
+		for (int j = 0; j < Mcol / 2; ++j)
+		{
+			tmp[j + i * Mcol / 2] = M[i][j + Mcol / 2];
 		}
 	}
-	scheme->encrypt(res2, tmp, Mcol/2, Mrow, logp, logq);
+	scheme->encrypt(res2, tmp, Mcol / 2, Mrow, logp, logq);
 	delete[] tmp;
 }
 
-void HERNN::encryptV(Ciphertext& res, double* V, long Vrow, long logp, long logq) {
+void HERNN::encryptV(Ciphertext &res, double *V, long Vrow, long logp, long logq)
+{
 	scheme->encrypt(res, V, Vrow, 1, logp, logq);
 }
 
-void HERNN::encryptVt(Ciphertext& res, double* V, long Vrow, long logp, long logq) {
+void HERNN::encryptVt(Ciphertext &res, double *V, long Vrow, long logp, long logq)
+{
 	scheme->encrypt(res, V, 1, Vrow, logp, logq);
 }
 
-void HERNN::encryptVx(Ciphertext& res, double* V, long Vrow, long logp, long logq) {
+void HERNN::encryptVx(Ciphertext &res, double *V, long Vrow, long logp, long logq)
+{
 	long Vrow2 = 1 << (long)ceil(log2(Vrow));
-	double* V2 = new double[Vrow2]();
-	for (int i = 0; i < Vrow; ++i) {
+	double *V2 = new double[Vrow2]();
+	for (int i = 0; i < Vrow; ++i)
+	{
 		V2[i] = V[i];
 	}
 	scheme->encrypt(res, V2, Vrow2, 1, logp, logq);
 	delete[] V2;
 }
 
-void HERNN::encryptVxt(Ciphertext& res, double* V, long Vrow, long logp, long logq) {
+void HERNN::encryptVxt(Ciphertext &res, double *V, long Vrow, long logp, long logq)
+{
 	long Vrow2 = 1 << (long)ceil(log2(Vrow));
-	double* V2 = new double[Vrow2]();
-	for (int i = 0; i < Vrow; ++i) {
+	double *V2 = new double[Vrow2]();
+	for (int i = 0; i < Vrow; ++i)
+	{
 		V2[i] = V[i];
 	}
 	scheme->encrypt(res, V2, 1, Vrow2, logp, logq);
 	delete[] V2;
 }
 
-void HERNN::encryptV2(Ciphertext& res1, Ciphertext& res2, double* V, long Vrow, long logp, long logq) {
-	scheme->encrypt(res1, V, Vrow/2, 1, logp, logq);
-	scheme->encrypt(res2, (V+(Vrow/2)), Vrow/2, 1, logp, logq);
+void HERNN::encryptV2(Ciphertext &res1, Ciphertext &res2, double *V, long Vrow, long logp, long logq)
+{
+	scheme->encrypt(res1, V, Vrow / 2, 1, logp, logq);
+	scheme->encrypt(res2, (V + (Vrow / 2)), Vrow / 2, 1, logp, logq);
 }
 
-void HERNN::encryptVt2(Ciphertext& res1, Ciphertext& res2, double* V, long Vrow, long logp, long logq) {
-	scheme->encrypt(res1, V, 1, Vrow/2, logp, logq);
-	scheme->encrypt(res2, (V+(Vrow/2)), 1, Vrow/2, logp, logq);
+void HERNN::encryptVt2(Ciphertext &res1, Ciphertext &res2, double *V, long Vrow, long logp, long logq)
+{
+	scheme->encrypt(res1, V, 1, Vrow / 2, logp, logq);
+	scheme->encrypt(res2, (V + (Vrow / 2)), 1, Vrow / 2, logp, logq);
 }
 
-void HERNN::evalMV(Ciphertext& res, Ciphertext& cipherM, Ciphertext& cipherV) {
+void HERNN::evalMV(Ciphertext &res, Ciphertext &cipherM, Ciphertext &cipherV)
+{
 	scheme->mult(res, cipherM, cipherV);
 	Ciphertext rot;
-	for (int i = 1; i < cipherM.n0; i <<= 1) {
+	for (int i = 1; i < cipherM.n0; i <<= 1)
+	{
 		scheme->leftRotate(rot, res, i, 0);
 		scheme->addAndEqual(res, rot);
 	}
@@ -138,17 +169,20 @@ void HERNN::evalMV(Ciphertext& res, Ciphertext& cipherM, Ciphertext& cipherV) {
 	res.n1 = cipherM.n1;
 }
 
-void HERNN::evalMV2(Ciphertext& res, Ciphertext& cipherM1, Ciphertext& cipherM2, Ciphertext& cipherV1, Ciphertext& cipherV2) {
+void HERNN::evalMV2(Ciphertext &res, Ciphertext &cipherM1, Ciphertext &cipherM2, Ciphertext &cipherV1, Ciphertext &cipherV2)
+{
 	Ciphertext tmp;
 	evalMV(res, cipherM1, cipherV1);
 	evalMV(tmp, cipherM2, cipherV2);
 	scheme->addAndEqual(res, tmp);
 }
 
-void HERNN::evalMVx(Ciphertext& res, Ciphertext& cipherM, Ciphertext& cipherV) {
+void HERNN::evalMVx(Ciphertext &res, Ciphertext &cipherM, Ciphertext &cipherV)
+{
 	scheme->mult(res, cipherM, cipherV);
 	Ciphertext rot;
-	for (int i = 1; i < cipherM.n1; i <<= 1) {
+	for (int i = 1; i < cipherM.n1; i <<= 1)
+	{
 		scheme->leftRotate(rot, res, 0, i);
 		scheme->addAndEqual(res, rot);
 	}
@@ -157,197 +191,230 @@ void HERNN::evalMVx(Ciphertext& res, Ciphertext& cipherM, Ciphertext& cipherV) {
 	res.n1 = 1;
 }
 
-void HERNN::evalAdd(Ciphertext& res, Ciphertext& cipher1, Ciphertext& cipher2) {
+void HERNN::evalAdd(Ciphertext &res, Ciphertext &cipher1, Ciphertext &cipher2)
+{
 	scheme->add(res, cipher1, cipher2);
 }
 
-void HERNN::evalAddAndEqual(Ciphertext& cipher1, Ciphertext& cipher2) {
+void HERNN::evalAddAndEqual(Ciphertext &cipher1, Ciphertext &cipher2)
+{
 	scheme->addAndEqual(cipher1, cipher2);
 }
 
-void HERNN::evalMul(Ciphertext& res, Ciphertext& cipher1, Ciphertext& cipher2) {
+void HERNN::evalMul(Ciphertext &res, Ciphertext &cipher1, Ciphertext &cipher2)
+{
 	scheme->mult(res, cipher1, cipher2);
 	scheme->reScaleByAndEqual(res, cipher1.logp);
 }
 
-void HERNN::evalMulAndEqual(Ciphertext& cipher1, Ciphertext& cipher2) {
+void HERNN::evalMulAndEqual(Ciphertext &cipher1, Ciphertext &cipher2)
+{
 	scheme->multAndEqual(cipher1, cipher2);
 	scheme->reScaleByAndEqual(cipher1, cipher2.logp);
 }
 
-void HERNN::evalOnem(Ciphertext& res, Ciphertext& cipher, long logp) {
+void HERNN::evalOnem(Ciphertext &res, Ciphertext &cipher, long logp)
+{
 	scheme->negate(res, cipher);
 	scheme->addConstAndEqual(res, 1.0, logp);
 }
 
-void HERNN::evalSigmoid(Ciphertext& cipher) {
-    // TODO logp? rescale? mod?
+void HERNN::evalSigmoid(Ciphertext &cipher)
+{
 	long logp = cipher.logp;
-	long loga = 2; // why???
-	scheme->reScaleByAndEqual(cipher, loga);
+	long loga = 2;							 //TODO: why???
+	scheme->reScaleByAndEqual(cipher, loga); // cipher(31, 1205)
 
 	/* 7-order approximation : c[4] x^2 x^2 x (x^2 + c[3] / c[4]) + c[2] x (x^2 + c[1] / c[2]) + c[0] */
-//	Ciphertext x_squared;
-//	x_squared.copy(cipher);
-//	scheme->squareAndEqual(x_squared);
-//	scheme->reScaleByAndEqual(x_squared, logp);
-//
-//	Ciphertext firstTerm, tmp, x_fourth;
-//	firstTerm.copy(x_squared);
-//	scheme->addConstAndEqual(firstTerm, sigmoid_coeff[3] / sigmoid_coeff[4], logp - 2 * loga); //x^2 + c[3] / c[4]
-//	scheme->multConst(tmp, cipher, sigmoid_coeff[4], logp + 7 * loga); // c[4] x
-//	scheme->reScaleByAndEqual(tmp, logp);
-//	x_fourth.copy(x_squared);
-//	scheme->squareAndEqual(x_fourth); // x^4
-//	scheme->reScaleByAndEqual(x_fourth, logp);
-//	scheme->multAndEqual(firstTerm, tmp); // (x^2 + c[3]/c[4]) * c[4]x
-//	scheme->multAndEqual(firstTerm, x_fourth); // (x^2 + c[3]/c[4]) * c[4]x^5
-//	scheme->reScaleByAndEqual(firstTerm, logp);
-//
-//	Ciphertext secondTerm;
-//	secondTerm.copy(x_squared);
-//	scheme->addConstAndEqual(secondTerm, sigmoid_coeff[1] / sigmoid_coeff[2], logp - 2 * loga); // x^2 + c[1] / c[2]
-//	scheme->multConst(tmp, cipher, sigmoid_coeff[2], logp + 3 * loga); // c[2]x
-//	scheme->reScaleByAndEqual(tmp, logp);
-//	scheme->multAndEqual(secondTerm, tmp); // (x^2 + c[1] / c[2]) * c[2]x
-//    scheme->reScaleByAndEqual(secondTerm, logp);
-//
-//	scheme->add(cipher, firstTerm, secondTerm);
-//	scheme->addConstAndEqual(cipher, sigmoid_coeff[0]);
+	//	Ciphertext x_squared;
+	//	x_squared.copy(cipher);
+	//	scheme->squareAndEqual(x_squared);
+	//	scheme->reScaleByAndEqual(x_squared, logp);
+	//
+	//	Ciphertext firstTerm, tmp, x_fourth;
+	//	firstTerm.copy(x_squared);
+	//	scheme->addConstAndEqual(firstTerm, sigmoid_coeff[3] / sigmoid_coeff[4], logp - 2 * loga); //x^2 + c[3] / c[4]
+	//	scheme->multConst(tmp, cipher, sigmoid_coeff[4], logp + 7 * loga); // c[4] x
+	//	scheme->reScaleByAndEqual(tmp, logp);
+	//	x_fourth.copy(x_squared);
+	//	scheme->squareAndEqual(x_fourth); // x^4
+	//	scheme->reScaleByAndEqual(x_fourth, logp);
+	//	scheme->multAndEqual(firstTerm, tmp); // (x^2 + c[3]/c[4]) * c[4]x
+	//	scheme->multAndEqual(firstTerm, x_fourth); // (x^2 + c[3]/c[4]) * c[4]x^5
+	//	scheme->reScaleByAndEqual(firstTerm, logp);
+	//
+	//	Ciphertext secondTerm;
+	//	secondTerm.copy(x_squared);
+	//	scheme->addConstAndEqual(secondTerm, sigmoid_coeff[1] / sigmoid_coeff[2], logp - 2 * loga); // x^2 + c[1] / c[2]
+	//	scheme->multConst(tmp, cipher, sigmoid_coeff[2], logp + 3 * loga); // c[2]x
+	//	scheme->reScaleByAndEqual(tmp, logp);
+	//	scheme->multAndEqual(secondTerm, tmp); // (x^2 + c[1] / c[2]) * c[2]x
+	//    scheme->reScaleByAndEqual(secondTerm, logp);
+	//
+	//	scheme->add(cipher, firstTerm, secondTerm);
+	//	scheme->addConstAndEqual(cipher, sigmoid_coeff[0]);
 
 	/* 3-order approximation */
 	Ciphertext enca2;
 	enca2.copy(cipher);
-	scheme->squareAndEqual(enca2);
-	scheme->reScaleByAndEqual(enca2, logp);
-	scheme->addConstAndEqual(enca2, sigmoid3[1] / sigmoid3[2], logp - 2 * loga);
-	scheme->multConstAndEqual(cipher, sigmoid3[2], logp + 3 * loga);
-	scheme->reScaleByAndEqual(cipher, logp);
-	scheme->multAndEqual(cipher, enca2);
-	scheme->reScaleByAndEqual(cipher, logp);
-	scheme->addConstAndEqual(cipher, sigmoid3[0]); // logp missing?
+	scheme->squareAndEqual(enca2);												 // enca2(62, 1205)
+	scheme->reScaleByAndEqual(enca2, logp);										 // enca2(29, 1172)
+	scheme->addConstAndEqual(enca2, sigmoid3[1] / sigmoid3[2], logp - 2 * loga); // enca2(29, 1172), logp - 2 * loga = 29
+	scheme->multConstAndEqual(cipher, sigmoid3[2], logp + 3 * loga);			 // cipher(31, 1205) -> (70, 1205)
+	scheme->reScaleByAndEqual(cipher, logp);									 // cipher(37, 1172)
+	scheme->multAndEqual(cipher, enca2);										 // cipher(66, 1172)
+	scheme->reScaleByAndEqual(cipher, logp);									 // cipher(33,1139)
+	scheme->addConstAndEqual(cipher, sigmoid3[0]);								 // cipher(33,1139)
 
-    /* 5-order approximation */
-//	Ciphertext enca2;
-//	enca2.copy(cipher);
-//	scheme->squareAndEqual(enca2);
-//	scheme->reScaleByAndEqual(enca2, logp);
-//	Ciphertext enca2c, encac;
-//	enca2c.copy(enca2);
-//	scheme->addConstAndEqual(enca2c, sigmoid5[2] / sigmoid5[3], logp - 2 * loga); // x^2 + c[2] / c[3]
-//	scheme->multConst(encac, cipher, sigmoid5[1], logp + loga); // c[1] * x
-//	scheme->multConstAndEqual(cipher, sigmoid5[3], logp + 5 * loga); // c[3] * x
-//	scheme->reScaleByAndEqual(cipher, logp);
-//	scheme->multAndEqual(cipher, enca2); // c[3]x * x^2
-//	scheme->multAndEqual(cipher, enca2c); // c[3]x * x^2 * (x^2 + c[2] / c[3])
-//	scheme->reScaleByAndEqual(cipher, 2 * logp);
-//	scheme->reScaleByAndEqual(encac, logp);
-//	scheme->modDownByAndEqual(encac, 2 * logp);
-//	scheme->addAndEqual(cipher, encac);
-//	scheme->addConstAndEqual(cipher, sigmoid5[0]);
+	/* 5-order approximation */
+	//	Ciphertext enca2;
+	//	enca2.copy(cipher);
+	//	scheme->squareAndEqual(enca2);
+	//	scheme->reScaleByAndEqual(enca2, logp);
+	//	Ciphertext enca2c, encac;
+	//	enca2c.copy(enca2);
+	//	scheme->addConstAndEqual(enca2c, sigmoid5[2] / sigmoid5[3], logp - 2 * loga); // x^2 + c[2] / c[3]
+	//	scheme->multConst(encac, cipher, sigmoid5[1], logp + loga); // c[1] * x
+	//	scheme->multConstAndEqual(cipher, sigmoid5[3], logp + 5 * loga); // c[3] * x
+	//	scheme->reScaleByAndEqual(cipher, logp);
+	//	scheme->multAndEqual(cipher, enca2); // c[3]x * x^2
+	//	scheme->multAndEqual(cipher, enca2c); // c[3]x * x^2 * (x^2 + c[2] / c[3])
+	//	scheme->reScaleByAndEqual(cipher, 2 * logp);
+	//	scheme->reScaleByAndEqual(encac, logp);
+	//	scheme->modDownByAndEqual(encac, 2 * logp);
+	//	scheme->addAndEqual(cipher, encac);
+	//	scheme->addConstAndEqual(cipher, sigmoid5[0]);
 }
 
-void HERNN::evalSigmoid(Ciphertext& cipher, int order) {
-    // TODO logp? rescale? mod?
-    long logp = cipher.logp;
-    long loga = 2; // why???
-    scheme->reScaleByAndEqual(cipher, loga);
+void HERNN::evalSigmoid(Ciphertext &cipher, int order)
+{
+	long logp = cipher.logp;
+	long loga = 2;							 // why???
+	scheme->reScaleByAndEqual(cipher, loga); // cipher(logp-loga, logq-loga)
 
-    Ciphertext cipher2; /// x^2
-    scheme->square(cipher2, cipher);
-    scheme->reScaleByAndEqual(cipher2, logp);
+	Ciphertext encIP2; /// x^2
+	scheme->square(encIP2, cipher);
+	scheme->reScaleByAndEqual(encIP2, logp); // encIP2(logp-2loga, logq-logp-loga)
 
-    if(order == 7) {
-        /* 7-order approximation : c[4] x^2 x^2 x (x^2 + c[3] / c[4]) + c[2] x (x^2 + c[1] / c[2]) + c[0] */
-//        Ciphertext cipher4; /// x^4
-//        scheme->square(cipher4, cipher2);
-//        scheme->reScaleByAndEqual(cipher4, logp);
-//
-//        Ciphertext tmp;
-//        scheme->multConst(tmp, cipher2, sigmoid7[3] / sigmoid7[4], logp - 2 * loga);
-//        scheme->reScaleByAndEqual(tmp, logp);
-//
-//        scheme->addAndEqual(cipher4, tmp);
-//        scheme->addConstAndEqual(cipher4, sigmoid7[2] / sigmoid7[4], logp - 4 * loga); // cipher4 = x^4 + a3/a4 x^2 + a2/a4
-//
-//        scheme->multConst(tmp, cipher, sigmoid7[1], logp + loga);
-//        scheme->reScaleByAndEqual(tmp, logp); // ?
-//
+	if (order == 7)
+	{
+		/* 7-order approximation */
+		Ciphertext encIP4;						 /// x^4
+		scheme->square(encIP4, encIP2);			 // encIP4(2logp-4loga, logq-logp-loga)
+		scheme->reScaleByAndEqual(encIP4, logp); // encIP4(logp-4loga, logq-2logp-loga)
 
-        Ciphertext firstTerm, tmp, x_fourth;
-        firstTerm.copy(cipher2);
-        scheme->addConstAndEqual(firstTerm, sigmoid7[3] / sigmoid7[4], logp - 2 * loga); //x^2 + c[3] / c[4]
-        scheme->multConst(tmp, cipher, sigmoid7[4], logp + 7 * loga); // c[4] x
-        scheme->reScaleByAndEqual(tmp, logp);
-        x_fourth.copy(cipher2);
-        scheme->squareAndEqual(x_fourth); // x^4
-        scheme->reScaleByAndEqual(x_fourth, logp);
-        scheme->multAndEqual(firstTerm, tmp); // (x^2 + c[3]/c[4]) * c[4]x
-        scheme->multAndEqual(firstTerm, x_fourth); // (x^2 + c[3]/c[4]) * c[4]x^5
-        scheme->reScaleByAndEqual(firstTerm, logp);
+		Ciphertext encIP2c;																/// a3/a4 x^2
+		scheme->multConst(encIP2c, encIP2, sigmoid7[3] / sigmoid7[4], logp - 2 * loga); // encIP2c(2logp-4loga, logq-logp-loga)
+		scheme->reScaleByAndEqual(encIP2c, logp);										// encIP2c(logp-4loga, logq-2logp-loga)
 
-        Ciphertext secondTerm;
-        secondTerm.copy(cipher2);
-        scheme->addConstAndEqual(secondTerm, sigmoid7[1] / sigmoid7[2], logp - 2 * loga); // x^2 + c[1] / c[2]
-        scheme->multConst(tmp, cipher, sigmoid7[2], logp + 3 * loga); // c[2]x
-        scheme->reScaleByAndEqual(tmp, logp);
-        scheme->multAndEqual(secondTerm, tmp); // (x^2 + c[1] / c[2]) * c[2]x
-        scheme->reScaleByAndEqual(secondTerm, logp);
+		scheme->addAndEqual(encIP4, encIP2c);										  // encIP4(logp-4loga, logq-2logp-loga)
+		scheme->addConstAndEqual(encIP4, sigmoid7[2] / sigmoid7[4], logp - 4 * loga); // encIP4(logp-4loga, logq-2logp-loga)
+																					  // encIP4 = x^4 + a3/a4 x^2 + a2/a4
 
-        scheme->add(cipher, firstTerm, secondTerm);
-        scheme->addConstAndEqual(cipher, sigmoid7[0]);
-    } else if (order == 5) {
+		Ciphertext tmp0; /// a1 x + a0
+		scheme->multConst(tmp0, cipher, sigmoid7[1], logp + loga); // tmp0(2logp, logq-loga)
+		scheme->reScaleByAndEqual(tmp0, logp); // tmp0(logp, logq-logp-loga)
+		scheme->addConstAndEqual(tmp0, sigmoid7[0], logp); //tmp0(logp, logq-logp-loga)
 
-        /* 5-order approximation */
-        Ciphertext enca2;
-        enca2.copy(cipher);
-        scheme->squareAndEqual(enca2);
-        scheme->reScaleByAndEqual(enca2, logp);
-        Ciphertext enca2c, encac;
-        enca2c.copy(enca2);
-        scheme->addConstAndEqual(enca2c, sigmoid5[2] / sigmoid5[3], logp - 2 * loga); // x^2 + c[2] / c[3]
-        scheme->multConst(encac, cipher, sigmoid5[1], logp + loga); // c[1] * x
-        scheme->multConstAndEqual(cipher, sigmoid5[3], logp + 5 * loga); // c[3] * x
-        scheme->reScaleByAndEqual(cipher, logp);
-        scheme->multAndEqual(cipher, enca2); // c[3]x * x^2
-        scheme->multAndEqual(cipher, enca2c); // c[3]x * x^2 * (x^2 + c[2] / c[3])
-        scheme->reScaleByAndEqual(cipher, 2 * logp);
-        scheme->reScaleByAndEqual(encac, logp);
-        scheme->modDownByAndEqual(encac, 2 * logp);
-        scheme->addAndEqual(cipher, encac);
-        scheme->addConstAndEqual(cipher, sigmoid5[0]);
-    } else {
-        evalSigmoid(cipher);
-    }
+		scheme->multConstAndEqual(cipher, sigmoid7[4], logp + 7 * loga); // tmp1(2logp+6loga, logq-loga)
+		scheme->reScaleByAndEqual(cipher, logp); // tmp1(logp+6loga, logq-logp-loga)
+		scheme->multAndEqual(cipher, encIP2); // tmp1(2logp+4loga, logq-logp-loga)
+		scheme->reScaleByAndEqual(cipher, logp); // tmp1(logp+4loga, logq-2logp-loga)
+
+		scheme->multAndEqual(cipher, encIP4); // tmp1(2logp, logq-2logp-loga)
+		scheme->reScaleByAndEqual(cipher, logp); // tmp1(logp, logq-3logp-loga)
+		scheme->modDownToAndEqual(tmp0, cipher.logq); // tmp0(logp, logq-3logp-loga)
+		scheme->addAndEqual(cipher, tmp0); // tmp1(logp, logq-3logp-loga)
+
+	}
+	else if (order == 5)
+	{
+		/* 5-order approximation */
+		Ciphertext enca2c, encac;
+		enca2c.copy(encIP2);
+		scheme->addConstAndEqual(enca2c, sigmoid5[2] / sigmoid5[3], logp - 2 * loga); // x^2 + c[2] / c[3]
+		scheme->multConst(encac, cipher, sigmoid5[1], logp + loga);					  // c[1] * x
+		scheme->multConstAndEqual(cipher, sigmoid5[3], logp + 5 * loga);			  // c[3] * x
+		scheme->reScaleByAndEqual(cipher, logp);
+		scheme->multAndEqual(cipher, encIP2);  // c[3]x * x^2
+		scheme->multAndEqual(cipher, enca2c); // c[3]x * x^2 * (x^2 + c[2] / c[3])
+		scheme->reScaleByAndEqual(cipher, 2 * logp);
+		scheme->reScaleByAndEqual(encac, logp);
+		scheme->modDownByAndEqual(encac, 2 * logp);
+		scheme->addAndEqual(cipher, encac);
+		scheme->addConstAndEqual(cipher, sigmoid5[0]);
+	}
+	else
+	{
+		evalSigmoid(cipher);
+	}
 }
 
-void HERNN::evalTanh(Ciphertext& cipher) {
+void HERNN::evalTanh(Ciphertext &cipher, int order)
+{ // cipher(logp,loga)
 	long logp = cipher.logp;
 	long loga = 2;
-	scheme->reScaleByAndEqual(cipher, loga);
-	Ciphertext enca2;
-	enca2.copy(cipher);
-	scheme->squareAndEqual(enca2);
-	scheme->reScaleByAndEqual(enca2, logp);
-	Ciphertext enca2c, encac;
-	enca2c.copy(enca2);
-	scheme->addConstAndEqual(enca2c, tanh5[2] / tanh5[3], logp - 2 * loga);
-	scheme->multConst(encac, cipher, tanh5[1], logp + loga);
-	scheme->multConstAndEqual(cipher, tanh5[3], logp + 5 * loga);
-	scheme->reScaleByAndEqual(cipher, logp);
-	scheme->multAndEqual(cipher, enca2);
-	scheme->multAndEqual(cipher, enca2c);
-	scheme->reScaleByAndEqual(cipher, 2 * logp);
-	scheme->reScaleByAndEqual(encac, logp);
-	scheme->modDownByAndEqual(encac, 2 * logp);
-	scheme->addAndEqual(cipher, encac);
+	scheme->reScaleByAndEqual(cipher, loga); // cipher(logp-loga,logq-loga)
+
+	Ciphertext encIP2; // x^2
+	encIP2.copy(cipher);
+	scheme->squareAndEqual(encIP2);			// encIP2(2logp-2loga,logq-loga)
+	scheme->reScaleByAndEqual(encIP2, logp); // encIP2(logp-2loga,logq-logp-loga)
+
+	if(order == 7){
+		/* 7-order approximation */
+		Ciphertext encIP4;						 /// x^4
+		scheme->square(encIP4, encIP2);			 // encIP4(2logp-4loga, logq-logp-loga)
+		scheme->reScaleByAndEqual(encIP4, logp); // encIP4(logp-4loga, logq-2logp-loga
+
+		Ciphertext encIP2c;																/// a3/a4 x^2
+		scheme->multConst(encIP2c, encIP2, tanh7[3] / tanh7[4], logp - 2 * loga); // encIP2c(2logp-4loga, logq-logp-loga)
+		scheme->reScaleByAndEqual(encIP2c, logp);										// encIP2c(logp-4loga, logq-2logp-loga)
+
+		scheme->addAndEqual(encIP4, encIP2c);										  // encIP4(logp-4loga, logq-2logp-loga)
+		scheme->addConstAndEqual(encIP4, tanh7[2] / tanh7[4], logp - 4 * loga); // encIP4(logp-4loga, logq-2logp-loga)
+																					  // encIP4 = x^4 + a3/a4 x^2 + a2/a4
+
+		Ciphertext tmp0; /// a1 x + a0
+		scheme->multConst(tmp0, cipher, tanh7[1], logp + loga); // tmp0(2logp, logq-loga)
+		scheme->reScaleByAndEqual(tmp0, logp); // tmp0(logp, logq-logp-loga)
+		scheme->addConstAndEqual(tmp0, tanh7[0], logp); //tmp0(logp, logq-logp-loga)
+
+		scheme->multConstAndEqual(cipher, tanh7[4], logp + 7 * loga); // tmp1(2logp+6loga, logq-loga)
+		scheme->reScaleByAndEqual(cipher, logp); // tmp1(logp+6loga, logq-logp-loga)
+		scheme->multAndEqual(cipher, encIP2); // tmp1(2logp+4loga, logq-logp-loga)
+		scheme->reScaleByAndEqual(cipher, logp); // tmp1(logp+4loga, logq-2logp-loga)
+
+		scheme->multAndEqual(cipher, encIP4); // tmp1(2logp, logq-2logp-loga)
+		scheme->reScaleByAndEqual(cipher, logp); // tmp1(logp, logq-3logp-loga)
+		scheme->modDownToAndEqual(tmp0, cipher.logq); // tmp0(logp, logq-3logp-loga)
+		scheme->addAndEqual(cipher, tmp0); // tmp1(logp, logq-3logp-loga)
+
+
+	} else{
+		/* 5-order approximation */
+		Ciphertext enca2c, encac; //x^2+c[2]/c[3], c[1]x
+		enca2c.copy(encIP2);
+		scheme->addConstAndEqual(enca2c, tanh5[2] / tanh5[3], logp - 2 * loga); // enca2c(logp-2loga,logq-logp-loga)
+		scheme->multConst(encac, cipher, tanh5[1], logp + loga);				// encac(2logp, logq-loga)
+		scheme->multConstAndEqual(cipher, tanh5[3], logp + 5 * loga);			// cipher(2logp+4loga,logq-loga)
+		scheme->reScaleByAndEqual(cipher, logp);								// cipher(logp+4loga,logq-logp-loga)
+		scheme->multAndEqual(cipher, encIP2);									// cipher(2logp+2loga, logq-logp-loga)
+		scheme->multAndEqual(cipher, enca2c);									// cipher(3logp, logq-logp-loga)
+		scheme->reScaleByAndEqual(cipher, 2 * logp);							// cipher(logp, logq-3logp-loga)
+		scheme->reScaleByAndEqual(encac, logp);									// encac(logp, logq-logp-loga)
+		scheme->modDownByAndEqual(encac, 2 * logp);								// encac(logp, logq-3logp-loga)
+		scheme->addAndEqual(cipher, encac);										// cipher (logp, logq-3logp-loga)
+	}
 }
 
-void HERNN::evalTrx1(Ciphertext& res, Ciphertext& c, Plaintext& diag) {
+void HERNN::evalTrx1(Ciphertext &res, Ciphertext &c, Plaintext &diag)
+{
 	scheme->multPoly(res, c, diag.mx, diag.logp);
 
 	Ciphertext tmp;
-	for (int i = 1; i < 64; i <<= 1) {
+	for (int i = 1; i < 64; i <<= 1)
+	{
 		scheme->leftRotate(tmp, res, i, 0);
 		scheme->addAndEqual(res, tmp);
 	}
@@ -356,11 +423,13 @@ void HERNN::evalTrx1(Ciphertext& res, Ciphertext& c, Plaintext& diag) {
 	res.n1 = 64;
 }
 
-void HERNN::evalTrx2(Ciphertext& res, Ciphertext& c, Plaintext& diag) {
+void HERNN::evalTrx2(Ciphertext &res, Ciphertext &c, Plaintext &diag)
+{
 	Ciphertext tmp;
 	scheme->multPoly(res, c, diag.mx, diag.logp);
 
-	for (int i = 1; i < 64; i <<= 1) {
+	for (int i = 1; i < 64; i <<= 1)
+	{
 		scheme->leftRotate(tmp, res, 0, i);
 		scheme->addAndEqual(res, tmp);
 	}
@@ -369,13 +438,15 @@ void HERNN::evalTrx2(Ciphertext& res, Ciphertext& c, Plaintext& diag) {
 	res.n1 = 1;
 }
 
-void HERNN::evalTransp1(Ciphertext& res, Ciphertext& c1, Ciphertext& c2, Plaintext& diag1, Plaintext& diag2) {
+void HERNN::evalTransp1(Ciphertext &res, Ciphertext &c1, Ciphertext &c2, Plaintext &diag1, Plaintext &diag2)
+{
 	Ciphertext tmp;
 	scheme->multPoly(tmp, c1, diag1.mx, diag1.logp);
 	scheme->multPoly(res, c2, diag2.mx, diag2.logp);
 	scheme->addAndEqual(res, tmp);
 
-	for (int i = 1; i < N0h; i <<= 1) {
+	for (int i = 1; i < N0h; i <<= 1)
+	{
 		scheme->leftRotate(tmp, res, i, 0);
 		scheme->addAndEqual(res, tmp);
 	}
@@ -384,12 +455,14 @@ void HERNN::evalTransp1(Ciphertext& res, Ciphertext& c1, Ciphertext& c2, Plainte
 	res.n1 = N1;
 }
 
-void HERNN::evalTransp2(Ciphertext& res1, Ciphertext& res2, Ciphertext& c, Plaintext& diag1, Plaintext& diag2) {
+void HERNN::evalTransp2(Ciphertext &res1, Ciphertext &res2, Ciphertext &c, Plaintext &diag1, Plaintext &diag2)
+{
 	Ciphertext tmp;
 	scheme->multPoly(res1, c, diag1.mx, diag1.logp);
 	scheme->multPoly(res2, c, diag2.mx, diag2.logp);
 
-	for (int i = 1; i < N1; i <<= 1) {
+	for (int i = 1; i < N1; i <<= 1)
+	{
 		scheme->leftRotate(tmp, res1, 0, i);
 		scheme->addAndEqual(res1, tmp);
 		scheme->leftRotate(tmp, res2, 0, i);
@@ -403,16 +476,19 @@ void HERNN::evalTransp2(Ciphertext& res1, Ciphertext& res2, Ciphertext& c, Plain
 	res2.n1 = 1;
 }
 
-void HERNN::print(Ciphertext& x, string name) {
+void HERNN::print(Ciphertext &x, string name)
+{
 	cout << "-----------" << name << "--------------" << endl;
 	cout << "slots:" << x.n0 << ", " << x.n1 << endl;
 	cout << "bits:" << x.logp << ", " << x.logq << endl;
-	complex<double>* vals = scheme->decrypt(*secretKey, x);
+	complex<double> *vals = scheme->decrypt(*secretKey, x);
 	double mm = 0.0;
-	int label =0;
+	int label = 0;
 	cout << "values:";
-	for (int j = 0; j < x.n1; ++j) {
-		for (int i = 0; i < x.n0; ++i) {
+	for (int j = 0; j < x.n1; ++j)
+	{
+		for (int i = 0; i < x.n0; ++i)
+		{
 			cout << vals[i + j * x.n0].real() << ",";
 			mm = max(mm, vals[i + j * x.n0].real());
 		}
@@ -423,15 +499,18 @@ void HERNN::print(Ciphertext& x, string name) {
 	delete[] vals;
 }
 
-void HERNN::printtr(Ciphertext& x, string name) {
+void HERNN::printtr(Ciphertext &x, string name)
+{
 	cout << "-----------" << name << "--------------" << endl;
 	cout << "slots:" << x.n0 << ", " << x.n1 << endl;
 	cout << "bits:" << x.logp << ", " << x.logq << endl;
-	complex<double>* vals = scheme->decrypt(*secretKey, x);
+	complex<double> *vals = scheme->decrypt(*secretKey, x);
 	double mm = 0.0;
 	cout << "values:";
-	for (int i = 0; i < x.n0; ++i) {
-			for (int j = 0; j < x.n1; ++j) {
+	for (int i = 0; i < x.n0; ++i)
+	{
+		for (int j = 0; j < x.n1; ++j)
+		{
 			cout << vals[i + j * x.n0].real() << ",";
 			mm = max(mm, vals[i + j * x.n0].real());
 		}
@@ -442,15 +521,14 @@ void HERNN::printtr(Ciphertext& x, string name) {
 	delete[] vals;
 }
 
-void HERNN::prints(Ciphertext& x, string name) {
+void HERNN::prints(Ciphertext &x, string name)
+{
 	cout << "-----------" << name << "--------------" << endl;
 	cout << "slots: " << x.n0 << ", " << x.n1 << endl;
 	cout << "bits: " << x.logp << ", " << x.logq << endl;
 	cout << "-------------------------------------" << endl;
 }
 
-HERNN::HERNN() {
-
+HERNN::HERNN()
+{
 }
-
-

@@ -6,7 +6,7 @@ using namespace NTL;
 
 static const long logN0 = 8; ///< matrix packing dimension 0
 static const long logN1 = 8; ///< matrix packing dimension 1
-static const long logQ = 1240; ///< Q = L : largest ciphertext modulus level
+static const long logQ = 1240; ///< Q = L : ciphertext modulus
 static const double sigma = 3.2; ///< for Gaussian sampling in KeyGen
 static const long h = 64; ///< for HWT sampling in KeyGen
 static const long pbnd = 59; ///< for evaluation key ?

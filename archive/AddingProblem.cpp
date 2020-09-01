@@ -4,6 +4,10 @@
 
 #include "AddingProblem.h"
 
+/// nonlinear function coefficients
+double sigmoid_coeff[5] = {0.5, 1.73496, -4.19407, 5.43402, -2.50739};
+double tanh_coeff[4] = {1, -8.49814, 11.99804, -6.49478};
+
 /// loadVector loads vector from file
 /// \param dest [out] double* variable to store the loaded file
 /// \param path [in] string variable for the input file path
@@ -374,7 +378,7 @@ void AddingProblem::forward(string input_path) {
 }
 
 
-int main() {
+void AddingProblem::run() {
     int hiddenSize = 64, inputSize = 2, numClass = 1, bptt = 200;
     AddingProblem *model = new AddingProblem(hiddenSize, inputSize, numClass, bptt);
     string path = "/home/hukla/CLionProjects/MHEGRU/addingProblem/";

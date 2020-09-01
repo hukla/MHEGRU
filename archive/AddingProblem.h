@@ -19,8 +19,6 @@
 
 using namespace std;
 
-double sigmoid_coeff[5] = {0.5, 1.73496, -4.19407, 5.43402, -2.50739};
-double tanh_coeff[4] = {1, -8.49814, 11.99804, -6.49478};
 
 class AddingProblem {
 private:
@@ -64,6 +62,9 @@ public:
     /// forward evaluates model forward propagation
     /// \param input_path [in] string variable that contains path for input string file
     void forward(string input_path);
+
+    /// run AddingProblem
+    void run();
 
 };
 

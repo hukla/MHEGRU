@@ -35,3 +35,4 @@
 cmake-build-debug
 cmake-build-debug-remote
 .vscode
+build
