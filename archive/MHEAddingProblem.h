@@ -58,8 +58,6 @@ private:
     Scheme scheme;
     HERNN hernn;
 
-private:
-
     long logp = 33;
 
     /// Ciphertext model weights and intermediate variables

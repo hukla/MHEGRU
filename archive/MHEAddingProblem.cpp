@@ -10,16 +10,21 @@ double tanh_coeff[4] = {1, -8.49814, 11.99804, -6.49478};
 /// loadVector loads vector from file
 /// \param dest [out] double* variable to store the loaded file
 /// \param path [in] string variable for the input file path
-void loadVector(double *dest, string path) {
+void loadVector(double *dest, string path)
+{
     ifstream openFile(path.data());
-    if (openFile.is_open()) {
+    if (openFile.is_open())
+    {
         string line, temp;
         size_t start, end;
         long i = 0;
-        while (getline(openFile, line)) {
+        while (getline(openFile, line))
+        {
             dest[i++] = atof(line.c_str());
         }
-    } else {
+    }
+    else
+    {
         cout << "Error: cannot read file" << path << endl;
     }
 }
@@ -27,16 +32,20 @@ void loadVector(double *dest, string path) {
 /// loadMatrix loads matrix from file
 /// \param dest [out] double* variable to store the loaded file
 /// \param path [in] string variable for the input file path
-void loadMatrix(double **dest, string path) {
+void loadMatrix(double **dest, string path)
+{
     ifstream openFile(path.data());
-    if (openFile.is_open()) {
+    if (openFile.is_open())
+    {
         string line, temp;
         size_t start = 0, end;
         long i = 0; //row
-        long j; //column
-        while (getline(openFile, line)) {
+        long j;     //column
+        while (getline(openFile, line))
+        {
             j = 0;
-            do {
+            do
+            {
                 end = line.find_first_of(',', start);
                 temp = line.substr(start, end);
                 dest[i][j] = atof(temp.c_str());
@@ -45,7 +54,9 @@ void loadMatrix(double **dest, string path) {
             } while (start);
             i++;
         }
-    } else {
+    }
+    else
+    {
         cout << "Error: cannot read file " << path << endl;
     }
 }
@@ -56,10 +67,13 @@ void loadMatrix(double **dest, string path) {
 /// \param V [in] double* vector for operand. shape: (Mcol)
 /// \param Mrow [in] Long variable that contains the number of rows in M
 /// \param Mcol [in] Long variable that contains the number of columns in M
-void evalMV(double *MV, double **M, double *V, long Mrow, long Mcol) {
-    for (int row = 0; row < Mrow; ++row) {
+void evalMV(double *MV, double **M, double *V, long Mrow, long Mcol)
+{
+    for (int row = 0; row < Mrow; ++row)
+    {
         MV[row] = 0.;
-        for (int col = 0; col < Mcol; ++col) {
+        for (int col = 0; col < Mcol; ++col)
+        {
             MV[row] += (M[row][col] * V[col]);
         }
     }
@@ -69,8 +83,10 @@ void evalMV(double *MV, double **M, double *V, long Mrow, long Mcol) {
 /// \param v1 [in, out] double* variable for operand 1 and storing the evaluation result.
 /// \param v2 [in] double* variable for operand 2
 /// \param n [in] Long variable that contains the length of both v1 and v2
-void evalAddAndEqual(double *v1, double *v2, long n) {
-    for (int i = 0; i < n; ++i) {
+void evalAddAndEqual(double *v1, double *v2, long n)
+{
+    for (int i = 0; i < n; ++i)
+    {
         v1[i] += v2[i];
     }
 }
@@ -80,8 +96,10 @@ void evalAddAndEqual(double *v1, double *v2, long n) {
 /// \param v1 [in] double* variable for operand 1
 /// \param v2 [in] double* variable for operand 2
 /// \param n [in] Long variable that contains the length of operand vectors
-void evalAdd(double *vr, double *v1, double *v2, long n) {
-    for (int i = 0; i < n; ++i) {
+void evalAdd(double *vr, double *v1, double *v2, long n)
+{
+    for (int i = 0; i < n; ++i)
+    {
         vr[i] = v1[i] + v2[i];
     }
 }
@@ -91,8 +109,10 @@ void evalAdd(double *vr, double *v1, double *v2, long n) {
 /// \param v1 [in] double* variable for operand 1
 /// \param v2 [in] double* variable for operand 2
 /// \param n [in] Long variable that contains the length of operand vectors
-void evalMul(double *vr, double *v1, double *v2, long n) {
-    for (int i = 0; i < n; ++i) {
+void evalMul(double *vr, double *v1, double *v2, long n)
+{
+    for (int i = 0; i < n; ++i)
+    {
         vr[i] = v1[i] * v2[i];
     }
 }
@@ -101,8 +121,10 @@ void evalMul(double *vr, double *v1, double *v2, long n) {
 /// \param v1 [in, out] double* variable for operand 1 and the evaluation result to be stored
 /// \param v2 [in] double* variable for operand 2
 /// \param n [in] Long variable that contains the length of operand vectors
-void evalMulAndEqual(double *v1, double *v2, long n) {
-    for (int i = 0; i < n; ++i) {
+void evalMulAndEqual(double *v1, double *v2, long n)
+{
+    for (int i = 0; i < n; ++i)
+    {
         v1[i] *= v2[i];
     }
 }
@@ -111,8 +133,10 @@ void evalMulAndEqual(double *v1, double *v2, long n) {
 /// \param vr [out] double* variable for evaluation result to be stored
 /// \param v [in] double* variable for operand
 /// \param n [in] Long variable that contains the length of operand vector
-void evalOnem(double *vr, double *v, long n) {
-    for (int i = 0; i < n; ++i) {
+void evalOnem(double *vr, double *v, long n)
+{
+    for (int i = 0; i < n; ++i)
+    {
         vr[i] = 1. - v[i];
     }
 }
@@ -120,10 +144,12 @@ void evalOnem(double *vr, double *v, long n) {
 /// approxSigmoid evaluates approximate sigmoid result of input value x: sigmoid(x)
 /// \param x [in] double variable for input value x
 /// \return [out] approximate sigmoid value of x
-double approxSigmoid(double x) {
+double approxSigmoid(double x)
+{
     double y = sigmoid_coeff[0];
 
-    for (int i = 1; i < 5; i++) {
+    for (int i = 1; i < 5; i++)
+    {
         y += sigmoid_coeff[i] * pow(x / 8, 2 * i - 1);
     }
 
@@ -133,10 +159,12 @@ double approxSigmoid(double x) {
 /// approxTanh evaluates approximate tanh result of input value x: tanh(x)
 /// \param x [in] double variable for input value x
 /// \return [out] approx tanh value of x
-double approxTanh(double x) {
+double approxTanh(double x)
+{
     double y = x;
 
-    for (int i = 1; i < 4; i++) {
+    for (int i = 1; i < 4; i++)
+    {
         y += tanh_coeff[i] * pow(x / 3.46992, 2 * i + 1);
     }
 
@@ -147,13 +175,13 @@ double approxTanh(double x) {
 /// \param x [in] double* vector that contains input value x
 /// \param n [in] Long variable that contains the input vector length
 /// \return [out] approximate tanh result of vector x
-double *approxTanh(double *x, long n) {
+double *approxTanh(double *x, long n)
+{
 
     double *y = new double[n];
-    for (long i = 0; i < n; ++i) {
-        y[i] = tanh_coeff[1] * pow(x[i], 3)
-               + tanh_coeff[2] * pow(x[i], 5)
-               + tanh_coeff[3] * pow(x[i], 7);
+    for (long i = 0; i < n; ++i)
+    {
+        y[i] = tanh_coeff[1] * pow(x[i], 3) + tanh_coeff[2] * pow(x[i], 5) + tanh_coeff[3] * pow(x[i], 7);
     }
     return y;
 }
@@ -162,20 +190,25 @@ double *approxTanh(double *x, long n) {
 /// \param x [in, out] double* vector that contains input vector x and stores result
 /// \param length [in] Long variable that contains the length for input vector x
 /// \param n, M, L [in] wideapprox related parameters
-void wideapprox(double *x, int length, int n, int M, int L) {
-    for (long i = 0; i < length; ++i) {
+void wideapprox(double *x, int length, int n, int M, int L)
+{
+    for (long i = 0; i < length; ++i)
+    {
         x[i] = x[i] / (M * pow(L, n - 1));
     }
 
-    for (long i = 0; i < n - 1; ++i) {
+    for (long i = 0; i < n - 1; ++i)
+    {
         x = approxTanh(x, length);
-        for (long j = 0; j < length; j++) {
+        for (long j = 0; j < length; j++)
+        {
             x[i] *= L;
         }
     }
 
     x = approxTanh(x, length);
-    for (long i = 0; i < length; i++) {
+    for (long i = 0; i < length; i++)
+    {
         x[i] *= M;
     }
 }
@@ -184,10 +217,12 @@ void wideapprox(double *x, int length, int n, int M, int L) {
 /// \param x [in] double variable that contains input value x
 /// \param n, M, L [in] wideapprox related parameters
 /// \return [out] wideapprox result of input value x
-double wideApprox(double x, double n, double M, double L) {
+double wideApprox(double x, double n, double M, double L)
+{
     double y;
     y = x / (M * pow(L, n - 1));
-    for (int i = 0; i < n - 1; i++) {
+    for (int i = 0; i < n - 1; i++)
+    {
         y = approxTanh(y) * L;
     }
 
@@ -199,9 +234,11 @@ double wideApprox(double x, double n, double M, double L) {
 /// evalTanh evaluates in-place approximate tanh of input vector x
 /// \param x [in, out] double variable that contains input vector x and stores the result
 /// \param length [in] Long variable that contains input vector length
-void evalTanh(double *x, long length) {
-    for (int i = 0; i < length; i++) {
-//        x[i] = approxTanh(wideApprox(x[i], 3, 2, 2));
+void evalTanh(double *x, long length)
+{
+    for (int i = 0; i < length; i++)
+    {
+        //        x[i] = approxTanh(wideApprox(x[i], 3, 2, 2));
         x[i] = approxTanh(x[i]);
     }
 }
@@ -209,9 +246,11 @@ void evalTanh(double *x, long length) {
 /// evalSigmoid evaluates in-place approximate sigmoid of input vector x
 /// \param x [in, out] double variable that contains input vector x and stores the result
 /// \param length [in] Long variable that contains input vector length
-void evalSigmoid(double *x, long length) {
-    for (int i = 0; i < length; i++) {
-//        x[i] = approxSigmoid(wideApprox(x[i], 3, 4, 2));
+void evalSigmoid(double *x, long length)
+{
+    for (int i = 0; i < length; i++)
+    {
+        //        x[i] = approxSigmoid(wideApprox(x[i], 3, 4, 2));
         x[i] = approxSigmoid(x[i]);
     }
 }
@@ -220,10 +259,12 @@ void evalSigmoid(double *x, long length) {
 /// \param v [in] double variable that contains vector to print
 /// \param name [in] string variable that contains name to print
 /// \param n [in] Long variable that contains input vector length
-void printv(double *v, string name, long n) {
+void printv(double *v, string name, long n)
+{
     cout << "-----------" << name << "--------------" << endl;
     double mm = 0.0;
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; ++i)
+    {
         cout << v[i] << ",";
         mm = max(mm, abs(v[i]));
     }
@@ -236,25 +277,28 @@ void printv(double *v, string name, long n) {
 /// \param name [in] string variable that contains name to print
 /// \param nrow [in] Long variable that contains the number of rows of input matrix
 /// \param ncol [in] Long variable that contains the number of cols of input matrix
-void printM(double **M, string name, long nrow, long ncol) {
+void printM(double **M, string name, long nrow, long ncol)
+{
     cout << "-----------" << name << "--------------" << endl;
-    for (int j = 0; j < nrow; ++j) {
-        for (int i = 0; i < ncol; ++i) {
+    for (int j = 0; j < nrow; ++j)
+    {
+        for (int i = 0; i < ncol; ++i)
+        {
             cout << M[j][i] << ",";
         }
         cout << endl;
     }
     cout << "-------------------------------------" << endl;
-
 }
 
-MHEAddingProblem::MHEAddingProblem() {
+MHEAddingProblem::MHEAddingProblem()
+{
 }
 
 MHEAddingProblem::MHEAddingProblem(int hiddenSize, int inputSize, int numClass, int bptt) : hiddenSize(hiddenSize),
                                                                                             inputSize(inputSize),
-                                                                                            numClass(numClass), bptt(bptt){
-    SetNumThreads(16);
+                                                                                            numClass(numClass), bptt(bptt)
+{
     // generate
     timeutils.start("Generating");
     ring = Ring();
@@ -262,6 +306,8 @@ MHEAddingProblem::MHEAddingProblem(int hiddenSize, int inputSize, int numClass, 
 
     //initialize scheme
     scheme = Scheme(secretKey, ring);
+    //    scheme.addEncKey(secretKey);
+    //    scheme.addMultKey(secretKey);
 
     // initialize hernn
     hernn = HERNN(secretKey, scheme);
@@ -273,8 +319,9 @@ MHEAddingProblem::MHEAddingProblem(int hiddenSize, int inputSize, int numClass, 
 
     // ????
     Plaintext diag;
-    complex<double>* tmpmsg = new complex<double>[64*64]();
-    for (int i = 0; i < 64; ++i) {
+    complex<double> *tmpmsg = new complex<double>[64 * 64]();
+    for (int i = 0; i < 64; ++i)
+    {
         tmpmsg[i + i * 64] = 1.;
     }
     scheme.encode(diag, tmpmsg, 64, 64, logp);
@@ -283,29 +330,37 @@ MHEAddingProblem::MHEAddingProblem(int hiddenSize, int inputSize, int numClass, 
 
     // initialize weight variables
     this->Wh = new double *[hiddenSize];
-    for (int i = 0; i < hiddenSize; ++i) Wh[i] = new double[inputSize]();
+    for (int i = 0; i < hiddenSize; ++i)
+        Wh[i] = new double[inputSize]();
     this->Wr = new double *[hiddenSize];
-    for (int i = 0; i < hiddenSize; ++i) Wr[i] = new double[inputSize]();
+    for (int i = 0; i < hiddenSize; ++i)
+        Wr[i] = new double[inputSize]();
     this->Wz = new double *[hiddenSize];
-    for (int i = 0; i < hiddenSize; ++i) Wz[i] = new double[inputSize]();
+    for (int i = 0; i < hiddenSize; ++i)
+        Wz[i] = new double[inputSize]();
 
     this->Uh = new double *[hiddenSize];
-    for (int i = 0; i < hiddenSize; ++i) Uh[i] = new double[hiddenSize]();
+    for (int i = 0; i < hiddenSize; ++i)
+        Uh[i] = new double[hiddenSize]();
     this->Ur = new double *[hiddenSize];
-    for (int i = 0; i < hiddenSize; ++i) Ur[i] = new double[hiddenSize]();
+    for (int i = 0; i < hiddenSize; ++i)
+        Ur[i] = new double[hiddenSize]();
     this->Uz = new double *[hiddenSize];
-    for (int i = 0; i < hiddenSize; ++i) Uz[i] = new double[hiddenSize]();
+    for (int i = 0; i < hiddenSize; ++i)
+        Uz[i] = new double[hiddenSize]();
 
     this->bh = new double[hiddenSize]();
     this->br = new double[hiddenSize]();
     this->bz = new double[hiddenSize]();
 
     this->FW = new double *[numClass];
-    for (int i = 0; i < numClass; ++i) FW[i] = new double[hiddenSize]();
+    for (int i = 0; i < numClass; ++i)
+        FW[i] = new double[hiddenSize]();
     this->Fb = new double[numClass]();
 }
 
-void MHEAddingProblem::loadWeights(string path) {
+void MHEAddingProblem::loadWeights(string path)
+{
     loadMatrix(this->Wh, path + "weights/gru_Wh.csv");
     loadMatrix(this->Wr, path + "weights/gru_Wr.csv");
     loadMatrix(this->Wz, path + "weights/gru_Wz.csv");
@@ -324,25 +379,31 @@ void MHEAddingProblem::loadWeights(string path) {
     cout << "Done loading weights from " << path << endl;
 }
 
-void MHEAddingProblem::forward(string input_path) {
+void MHEAddingProblem::forward(string input_path)
+{
     // load input file
     double **sequence = new double *[bptt]; // input sequence, shape: (bptt, 2)
-    for (int i = 0; i < bptt; ++i) sequence[i] = new double[inputSize];
+    for (int i = 0; i < bptt; ++i)
+        sequence[i] = new double[inputSize];
     double *operands = new double[2];
-    loadMatrix(sequence, input_path+"input.csv");
+    loadMatrix(sequence, input_path + "input.csv");
     int operand_count = 0;
-    for (int i = 0; i < bptt; i++) {
-        if (sequence[i][1] == 1) {
+    for (int i = 0; i < bptt; i++)
+    {
+        if (sequence[i][1] == 1)
+        {
             operands[operand_count++] = sequence[i][0];
         }
-        if (operand_count == 2) {
+        if (operand_count == 2)
+        {
             break;
         }
     }
     printv(operands, "input", 2);
 
     double **hidden = new double *[bptt + 1]; // hidden state, shape: (6, 64)
-    for (int i = 0; i < bptt + 1; ++i) hidden[i] = new double[hiddenSize]();
+    for (int i = 0; i < bptt + 1; ++i)
+        hidden[i] = new double[hiddenSize]();
 
     // temporary values
     double *Wzx = new double[hiddenSize]();
@@ -368,8 +429,9 @@ void MHEAddingProblem::forward(string input_path) {
 
     // ???????
     Plaintext diag;
-    complex<double>* tmpmsg = new complex<double>[64*64]();
-    for (int i = 0; i < 64; ++i) {
+    complex<double> *tmpmsg = new complex<double>[64 * 64]();
+    for (int i = 0; i < 64; ++i)
+    {
         tmpmsg[i + i * 64] = 1.;
     }
     scheme.encode(diag, tmpmsg, 64, 64, logp);
@@ -384,62 +446,67 @@ void MHEAddingProblem::forward(string input_path) {
     hernn.encryptVx(enc_hidden, hidden[0], hiddenSize, logp, logQ);
 
     double **hidden_plaintext = new double *[bptt + 1]; // hidden state, shape: (6, 64)
-    for (int i = 0; i < bptt + 1; ++i) hidden_plaintext[i] = new double[hiddenSize]();
+    for (int i = 0; i < bptt + 1; ++i)
+        hidden_plaintext[i] = new double[hiddenSize]();
 
     /* GRU forward */
-    for (int t = 0; t < bptt; ++t) {
+    for (int t = 0; t < bptt; ++t)
+    {
         timeutils.start("forward gru step " + to_string(t));
 
-        hernn.encryptVx(enc_x, sequence[t], inputSize, logp, logQ);
+        hernn.encryptVx(enc_x, sequence[t], inputSize, logp, logQ); //(33, 1240)
+        hernn.print(enc_x, "input");
 
         /* r = sigmoid(WrX + UrH + br) */
-        hernn.evalMV(enc_Wrx, enc_Wr, enc_x); // Wrx = Wr \cdot X
-        hernn.evalMV(enc_Urh, enc_Ur, enc_hidden); // Urh = Ur \cdot H
-        // ?? modDownTo?
-        hernn.evalAdd(enc_r, enc_Wrx, enc_Urh); // r = WrX + UrH
-        scheme.modDownTo(tmp, enc_br, enc_r.logq); // ?????
-        hernn.evalAddAndEqual(enc_r, tmp); // r = WrX + UrH + br
-        hernn.evalSigmoid(enc_r); // r = sigmoid(WrX + UrH + br)
+        hernn.evalMV(enc_Wrx, enc_Wr, enc_x); // Wrx = Wr \cdot X  (33, 1207)
+        scheme.modDownTo(tmp, enc_Ur, enc_hidden.logq);
+        hernn.evalMV(enc_Urh, tmp, enc_hidden); // Urh = Ur \cdot H  (33, logq)
+        scheme.modDownToAndEqual(enc_Wrx, enc_Urh.logq);
+        hernn.evalAdd(enc_r, enc_Wrx, enc_Urh);    // r = WrX + UrH (33, logq)
+        scheme.modDownTo(tmp, enc_br, enc_r.logq); // tmp=enc_br(33, logq)
+        hernn.evalAddAndEqual(enc_r, tmp);         // r = WrX + UrH + br (33, logq)
+        hernn.evalSigmoid(enc_r, 7);               // r = sigmoid(WrX + UrH + br) (33, logq - 2 * logp - loga)
         hernn.printtr(enc_r, "r gate");
-//        printv(r, "reset_gate @ step " + to_string(t + 1), hiddenSize);
 
         /* z = sigmoid(WzX + UzH + bz) */
         hernn.evalMV(enc_Wzx, enc_Wz, enc_x); // Wzx = Wz \cdot X
-        hernn.evalMV(enc_Uzh, enc_Uz, enc_hidden); // Uzh = Uz \cdot H
+        scheme.modDownTo(tmp, enc_Uz, enc_hidden.logq);
+        hernn.evalMV(enc_Uzh, tmp, enc_hidden); // Uzh = Uz \cdot H
+        scheme.modDownToAndEqual(enc_Wzx, enc_Uzh.logq);
         hernn.evalAdd(enc_z, enc_Wzx, enc_Uzh); // z = WzX + UzH
         scheme.modDownTo(tmp, enc_bz, enc_z.logq);
         hernn.evalAddAndEqual(enc_z, tmp); // z = WzX + UzH + bz
-
-        hernn.evalSigmoid(enc_z); // z = sigmoid(WzX + UzH + bz)
+        hernn.evalSigmoid(enc_z, 7);       // z = sigmoid(WzX + UzH + bz) (33, logq - 2logp - loga)
         hernn.printtr(enc_z, "z gate");
-//        printv(z, "update_gate @ step " + to_string(t + 1), hiddenSize);
+        //        printv(z, "update_gate @ step " + to_string(t + 1), hiddenSize);
 
         /* g = tanh(WgX + Ug(r * H) + bg) */
         hernn.evalMV(enc_Whx, enc_Wh, enc_x); // Wgx = Wg \cdot X
-        hernn.evalMV(enc_Uhh, enc_Uh, enc_hidden); // Ugh = Ug \cdot H
+        scheme.modDownTo(tmp, enc_Uh, enc_hidden.logq);
+        hernn.evalMV(enc_Uhh, tmp, enc_hidden); // Ugh = Ug \cdot H
         scheme.modDownTo(enc_g, enc_Uhh, enc_r.logq);
         hernn.evalMulAndEqual(enc_g, enc_r); // g = UgH * r
         scheme.modDownToAndEqual(enc_Whx, enc_g.logq);
         hernn.evalAddAndEqual(enc_g, enc_Whx); // g = WgX + Ug(r * H)
         scheme.modDownToAndEqual(enc_bh, enc_g.logq);
-        hernn.evalAddAndEqual(enc_g, enc_bh); // g = WgX + Ug(r * H) + bg
-        hernn.evalTanh(enc_g); // g = tanh(WgX + Ug(r * H) + bg)
+        hernn.evalAddAndEqual(enc_g, enc_bh); // g = WgX + Ug(r * H) + bg, enc_g (33,1106)
+        hernn.evalTanh(enc_g, 7);                // g = tanh(WgX + Ug(r * H) + bg) enc_g (33, logq - 3logp - loga)
         hernn.printtr(enc_g, "g gate");
 
         /* hidden[t+1] = (1 - z) * g + z * h */
-        hernn.evalOnem(enc_z1, enc_z, logp); // z1 = 1 - z
-        scheme.modDownToAndEqual(enc_z1, enc_g.logq);
-        hernn.evalMulAndEqual(enc_g, enc_z1); // g = (1 -z) * g
+        hernn.evalOnem(enc_z1, enc_z, logp);          // z1 = 1 - z (33,1139)
+        scheme.modDownToAndEqual(enc_z1, enc_g.logq); // (33, 1005)
+        hernn.evalMulAndEqual(enc_g, enc_z1);         // g = (1 -z) * g (33, 972)
 
-        hernn.evalTrx1(enc_htr, enc_hidden, diag);
+        hernn.evalTrx1(enc_htr, enc_hidden, diag); // enc_htr (33, 1207)
         scheme.modDownTo(enc_zh, enc_htr, enc_z.logq);
-        hernn.evalMulAndEqual(enc_zh, enc_z); // zh = z * hidden[t]
-        scheme.modDownTo(enc_htr, enc_zh, enc_g.logq);
-        hernn.evalAddAndEqual(enc_htr, enc_g); // hidden[i+1] = (1 - z) * g + z * hidden[t]
+        hernn.evalMulAndEqual(enc_zh, enc_z);          // zh = z * hidden[t] enc_zh (33,1106)
+        scheme.modDownTo(enc_htr, enc_zh, enc_g.logq); // enc_htr (33, 972)
+        hernn.evalAddAndEqual(enc_htr, enc_g);         // hidden[i+1] = (1 - z) * g + z * hidden[t]
 
-
-        if(enc_htr.logq < logq1 && t < bptt - 1) {
-//        if(t < bptt - 1) {
+        if (enc_htr.logq < logq1 && t < bptt - 1)
+        {
+            //        if(t < bptt - 1) {
             timeutils.start("bootstrap");
             long tmpn0 = enc_htr.n0;
             long tmpn1 = enc_htr.n1;
@@ -450,14 +517,15 @@ void MHEAddingProblem::forward(string input_path) {
             enc_htr.n1 = tmpn1;
             timeutils.stop("bootstrap");
         }
-        if(t < bptt - 1) {
-            hernn.evalTrx2(enc_hidden, enc_htr, diag);
+        if (t < bptt - 1)
+        {
+            hernn.evalTrx2(enc_hidden, enc_htr, diag); // enc_hidden(33, 939)
         }
         timeutils.stop("forward gru step " + to_string(t));
         hernn.printtr(enc_htr, "hidden ciphertext @ gru step " + to_string(t));
 
         // compare with plaintext hidden
-        loadMatrix(hidden_plaintext, input_path+"hidden_"+to_string(t)+".csv");
+        loadMatrix(hidden_plaintext, input_path + "hidden_" + to_string(t) + ".csv");
         printM(hidden_plaintext, "hidden_plaintext", 1, hiddenSize);
     }
 
@@ -471,10 +539,10 @@ void MHEAddingProblem::forward(string input_path) {
     timeutils.stop("forward fc");
 
     hernn.print(enc_output, "cipher_logit");
-
 }
 
-void MHEAddingProblem::encryptWeights() {
+void MHEAddingProblem::encryptWeights()
+{
     timeutils.start("Encrypting Weights");
     hernn.encryptMt(enc_Wh, Wh, hiddenSize, inputSize, logp, logQ);
     hernn.encryptMt(enc_Wz, Wz, hiddenSize, inputSize, logp, logQ);
@@ -493,9 +561,8 @@ void MHEAddingProblem::encryptWeights() {
     timeutils.stop("Encrypting Weights");
 }
 
-
-
-void MHEAddingProblem::run() {
+void MHEAddingProblem::run()
+{
     int hiddenSize = 64, inputSize = 2, numClass = 1, bptt = 6;
     MHEAddingProblem *model = new MHEAddingProblem(hiddenSize, inputSize, numClass, bptt);
     string path = "/home/hukla/CLionProjects/MHEGRU/addingProblem_6/";
