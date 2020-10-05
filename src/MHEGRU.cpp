@@ -312,12 +312,19 @@ void MHEGRU::forward(string input_path)
 
         /* z = sigmoid(WzX + UzH + bz) */
         hernn.evalMV(enc_Wzx, enc_Wz, enc_x); // Wzx = Wz \cdot X
+        // hernn.printtr(enc_Wzx, "enc_Wzx");
         scheme.modDownTo(tmp, enc_Uz, enc_hidden.logq);
+        // hernn.printtr(tmp, "tmp");
         hernn.evalMV(enc_Uzh, tmp, enc_hidden); // Uzh = Uz \cdot H
+        // hernn.printtr(enc_Uzh, "enc_Uzh");
         scheme.modDownToAndEqual(enc_Wzx, enc_Uzh.logq);
+        // hernn.printtr(enc_Wzx, "enc_Wzx");
         hernn.evalAdd(enc_z, enc_Wzx, enc_Uzh); // z = WzX + UzH
+        // hernn.printtr(enc_z, "enc_Wzx");
         scheme.modDownTo(tmp, enc_bz, enc_z.logq);
+        // hernn.printtr(tmp, "tmp");
         hernn.evalAddAndEqual(enc_z, tmp); // z = WzX + UzH + bz
+        // hernn.printtr(enc_z, "enc_z");
         hernn.evalSigmoid(enc_z, 7);       // z = sigmoid(WzX + UzH + bz) (33, logq - 2logp - loga)
         hernn.printtr(enc_z, "z gate");
         //        printv(z, "update_gate @ step " + to_string(t + 1), hiddenSize);
