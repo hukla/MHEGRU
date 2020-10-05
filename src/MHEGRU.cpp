@@ -1,7 +1,7 @@
 #include "MHEGRU.h"
 
-double sigmoid_coeff[5] = {0.5, 1.73496, -4.19407, 5.43402, -2.50739};
-double tanh_coeff[4] = {1, -8.49814, 11.99804, -6.49478};
+// double sigmoid_coeff[5] = {0.5, 1.73496, -4.19407, 5.43402, -2.50739};
+// double tanh_coeff[4] = {1, -8.49814, 11.99804, -6.49478};
 
 /// loadVector loads vector from file
 /// \param dest [out] double* variable to store the loaded file
@@ -237,7 +237,7 @@ void MHEGRU::forward(string input_path)
     //     }
     // }
     // printv(operands, "input", 2);
-    printM(sequence, "sequence", 28, 32);
+    // printM(sequence, "sequence", 28, 32);
 
     double **hidden = new double *[bptt + 1]; // hidden state, shape: (bptt + 1, hiddenSize)
     for (int i = 0; i < bptt + 1; ++i)
