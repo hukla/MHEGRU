@@ -74,6 +74,7 @@ public:
     void print(Ciphertext& x, string name);
     void printtr(Ciphertext& x, string name);
     void prints(Ciphertext& x, string name);
+    void printResult(Ciphertext& x, string name);
 
     void evalSigmoid(Ciphertext &cipher, int order);
 };

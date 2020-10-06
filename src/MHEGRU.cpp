@@ -4,9 +4,10 @@
 // double tanh_coeff[4] = {1, -8.49814, 11.99804, -6.49478};
 
 /// loadVector loads vector from file
-/// \param dest [out] double* variable to store the loaded file
+/// \param dest [in, out] double* variable to store the loaded file
 /// \param path [in] string variable for the input file path
-void loadVector(double *dest, string path)
+/// \param direction [in] int variable for vector direction 0: col 1: row
+void loadVector(double *dest, string path, int direction=0)
 {
     ifstream openFile(path.data());
     if (openFile.is_open())
@@ -14,9 +15,25 @@ void loadVector(double *dest, string path)
         string line, temp;
         size_t start, end;
         long i = 0;
-        while (getline(openFile, line))
+        if (direction == 1)
         {
-            dest[i++] = atof(line.c_str());
+            getline(openFile, line);
+            start = 0;
+            do
+            {
+                end = line.find_first_of(',', start);
+                temp = line.substr(start, end);
+                dest[i] = atof(temp.c_str());
+                start = end + 1;
+                i++;
+            } while (start);
+        }
+        else
+        {
+            while (getline(openFile, line))
+            {
+                dest[i++] = atof(line.c_str());
+            }
         }
     }
     else
@@ -282,7 +299,7 @@ void MHEGRU::forward(string input_path)
 
     Ciphertext tmp, tmp2;
 
-    long logq1 = (12 * logp + 2 + 2) + 40;
+    long logq1 = (14 * logp + 2 + 2) + 40;
 
     hernn.encryptVx(enc_hidden, hidden[0], hiddenSize, logp, logQ);
 
@@ -307,7 +324,7 @@ void MHEGRU::forward(string input_path)
         hernn.evalAdd(enc_r, enc_Wrx, enc_Urh);    // r = WrX + UrH (33, logq)
         scheme.modDownTo(tmp, enc_br, enc_r.logq); // tmp=enc_br(33, logq)
         hernn.evalAddAndEqual(enc_r, tmp);         // r = WrX + UrH + br (33, logq)
-        hernn.evalSigmoid(enc_r, 7);               // r = sigmoid(WrX + UrH + br) (33, logq - 2 * logp - loga)
+        hernn.evalSigmoid(enc_r, 7);               // r = sigmoid(WrX + UrH + br) (33, logq - 4logp - loga)
         hernn.printtr(enc_r, "r gate");
 
         /* z = sigmoid(WzX + UzH + bz) */
@@ -325,7 +342,7 @@ void MHEGRU::forward(string input_path)
         // hernn.printtr(tmp, "tmp");
         hernn.evalAddAndEqual(enc_z, tmp); // z = WzX + UzH + bz
         // hernn.printtr(enc_z, "enc_z");
-        hernn.evalSigmoid(enc_z, 7);       // z = sigmoid(WzX + UzH + bz) (33, logq - 2logp - loga)
+        hernn.evalSigmoid(enc_z, 7);       // z = sigmoid(WzX + UzH + bz) (33, logq - 4logp - loga)
         hernn.printtr(enc_z, "z gate");
         //        printv(z, "update_gate @ step " + to_string(t + 1), hiddenSize);
 
@@ -339,7 +356,7 @@ void MHEGRU::forward(string input_path)
         hernn.evalAddAndEqual(enc_g, enc_Whx); // g = WgX + Ug(r * H)
         scheme.modDownToAndEqual(enc_bh, enc_g.logq);
         hernn.evalAddAndEqual(enc_g, enc_bh); // g = WgX + Ug(r * H) + bg, enc_g (33,1106)
-        hernn.evalTanh(enc_g, 7);                // g = tanh(WgX + Ug(r * H) + bg) enc_g (33, logq - 3logp - loga)
+        hernn.evalTanh(enc_g, 7);                // g = tanh(WgX + Ug(r * H) + bg) enc_g (33, logq - 4logp - loga)
         hernn.printtr(enc_g, "g gate");
 
         /* hidden[t+1] = (1 - z) * g + z * h */
@@ -374,8 +391,8 @@ void MHEGRU::forward(string input_path)
         hernn.printtr(enc_htr, "hidden ciphertext @ gru step " + to_string(t));
 
         // compare with plaintext hidden
-        loadMatrix(hidden_plaintext, input_path + "hidden_" + to_string(t) + ".csv");
-        printM(hidden_plaintext, "hidden_plaintext", 1, hiddenSize);
+        loadVector(hidden_plaintext[t], input_path + "hidden_" + to_string(t) + ".csv", 1);
+        printv(hidden_plaintext[t], "hidden_plaintext", hiddenSize);
     }
 
     /* fc forward */
@@ -387,6 +404,6 @@ void MHEGRU::forward(string input_path)
     hernn.evalAddAndEqual(enc_output, enc_FWh);
     timeutils.stop("forward fc");
 
-    hernn.print(enc_output, "cipher_logit");
+    hernn.printResult(enc_output, "Prediction result");
     
 }
