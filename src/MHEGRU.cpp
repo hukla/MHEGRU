@@ -1,4 +1,5 @@
 #include "MHEGRU.h"
+// #define MYDEBUG
 
 // double sigmoid_coeff[5] = {0.5, 1.73496, -4.19407, 5.43402, -2.50739};
 // double tanh_coeff[4] = {1, -8.49814, 11.99804, -6.49478};
@@ -299,7 +300,7 @@ void MHEGRU::forward(string input_path)
 
     Ciphertext tmp, tmp2;
 
-    long logq1 = (14 * logp + 2 + 2) + 40;
+    long logq1 = (12 * logp + 2 + 2) + 40;
 
     hernn.encryptVx(enc_hidden, hidden[0], hiddenSize, logp, logQ);
 
@@ -316,6 +317,27 @@ void MHEGRU::forward(string input_path)
         hernn.encryptVx(enc_x, sequence[t], inputSize, logp, logQ); //(33, 1240)
         hernn.print(enc_x, "input");
 
+        #if defined(MYDEBUG)
+
+        /* r = sigmoid(WrX + UrH + br) */
+        hernn.evalMV(enc_Wrx, enc_Wr, enc_x); // Wrx = Wr \cdot X  (33, 1207)
+        hernn.printtr(enc_Wrx, "enc_Wrx");
+        scheme.modDownTo(tmp, enc_Ur, enc_hidden.logq);
+        hernn.printtr(tmp, "enc_Ur mod down");
+        hernn.evalMV(enc_Urh, tmp, enc_hidden); // Urh = Ur \cdot H  (33, logq)
+        hernn.printtr(enc_Urh, "enc_Urh");
+        scheme.modDownToAndEqual(enc_Wrx, enc_Urh.logq);
+        hernn.evalAdd(enc_r, enc_Wrx, enc_Urh);    // r = WrX + UrH (33, logq)
+        hernn.printtr(enc_r, "enc_r");
+        scheme.modDownTo(tmp, enc_br, enc_r.logq); // tmp=enc_br(33, logq)
+        hernn.printtr(tmp, "enc_br mod down");
+        hernn.evalAddAndEqual(enc_r, tmp);         // r = WrX + UrH + br (33, logq)
+        hernn.printtr(enc_r, "enc_r");
+        hernn.evalSigmoid(enc_r, 7);               // r = sigmoid(WrX + UrH + br) (33, logq - 4logp - loga)
+        hernn.printtr(enc_r, "r gate");
+
+        #else
+
         /* r = sigmoid(WrX + UrH + br) */
         hernn.evalMV(enc_Wrx, enc_Wr, enc_x); // Wrx = Wr \cdot X  (33, 1207)
         scheme.modDownTo(tmp, enc_Ur, enc_hidden.logq);
@@ -325,7 +347,8 @@ void MHEGRU::forward(string input_path)
         scheme.modDownTo(tmp, enc_br, enc_r.logq); // tmp=enc_br(33, logq)
         hernn.evalAddAndEqual(enc_r, tmp);         // r = WrX + UrH + br (33, logq)
         hernn.evalSigmoid(enc_r, 7);               // r = sigmoid(WrX + UrH + br) (33, logq - 4logp - loga)
-        hernn.printtr(enc_r, "r gate");
+
+        #endif
 
         /* z = sigmoid(WzX + UzH + bz) */
         hernn.evalMV(enc_Wzx, enc_Wz, enc_x); // Wzx = Wz \cdot X
@@ -343,7 +366,7 @@ void MHEGRU::forward(string input_path)
         hernn.evalAddAndEqual(enc_z, tmp); // z = WzX + UzH + bz
         // hernn.printtr(enc_z, "enc_z");
         hernn.evalSigmoid(enc_z, 7);       // z = sigmoid(WzX + UzH + bz) (33, logq - 4logp - loga)
-        hernn.printtr(enc_z, "z gate");
+        // hernn.printtr(enc_z, "z gate");
         //        printv(z, "update_gate @ step " + to_string(t + 1), hiddenSize);
 
         /* g = tanh(WgX + Ug(r * H) + bg) */
@@ -357,7 +380,7 @@ void MHEGRU::forward(string input_path)
         scheme.modDownToAndEqual(enc_bh, enc_g.logq);
         hernn.evalAddAndEqual(enc_g, enc_bh); // g = WgX + Ug(r * H) + bg, enc_g (33,1106)
         hernn.evalTanh(enc_g, 7);                // g = tanh(WgX + Ug(r * H) + bg) enc_g (33, logq - 4logp - loga)
-        hernn.printtr(enc_g, "g gate");
+        // hernn.printtr(enc_g, "g gate");
 
         /* hidden[t+1] = (1 - z) * g + z * h */
         hernn.evalOnem(enc_z1, enc_z, logp);          // z1 = 1 - z (33,1139)
@@ -369,6 +392,8 @@ void MHEGRU::forward(string input_path)
         hernn.evalMulAndEqual(enc_zh, enc_z);          // zh = z * hidden[t] enc_zh (33,1106)
         scheme.modDownTo(enc_htr, enc_zh, enc_g.logq); // enc_htr (33, 972)
         hernn.evalAddAndEqual(enc_htr, enc_g);         // hidden[i+1] = (1 - z) * g + z * hidden[t]
+
+        // hernn.printtr(enc_htr, "enc_htr");
 
         if (enc_htr.logq < logq1 && t < bptt - 1)
         {
@@ -393,6 +418,13 @@ void MHEGRU::forward(string input_path)
         // compare with plaintext hidden
         loadVector(hidden_plaintext[t], input_path + "hidden_" + to_string(t) + ".csv", 1);
         printv(hidden_plaintext[t], "hidden_plaintext", hiddenSize);
+
+        #if defined(MYDEBUG)
+        if (t == 2)
+        {
+            break;
+        }
+        #endif
     }
 
     /* fc forward */
