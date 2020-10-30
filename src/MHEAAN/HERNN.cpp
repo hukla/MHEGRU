@@ -1,5 +1,6 @@
 #include "HERNN.h"
 #include "Scheme.h"
+#include "Coefficients.h"
 
 HERNN::HERNN(SecretKey &secretKey, Scheme &scheme) : secretKey(&secretKey), scheme(&scheme)
 {
