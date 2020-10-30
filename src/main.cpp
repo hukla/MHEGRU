@@ -1,7 +1,27 @@
 #include <iostream>
+#include <fstream>
 #include "MHEGRU.h"
+#include "TestScheme.h"
 
-int main(int argc, char **argv)
+int test() {
+
+//----------------------------------------------------------------------------------
+//   STANDARD TESTS
+//----------------------------------------------------------------------------------
+
+	TestScheme::testEncrypt(300, 30, 2, 2);
+	TestScheme::testStandard(300, 30, 2, 2);
+	TestScheme::testimult(300, 30, 2, 2);
+
+	TestScheme::testRotateFast(300, 30, 3, 3, 1, 0);
+	TestScheme::testConjugate(300, 30, 2, 2);
+
+	TestScheme::testBootstrap(40, 33, 7, 8, 4, 4);
+
+	return 0;
+}
+
+int main(int argc, const char **argv)
 {
     if (argc < 2)
     {
@@ -9,7 +29,10 @@ int main(int argc, char **argv)
         std::cerr << "TASK_ID : MNIST=1, addingProblem=2, " << std::endl;
         std::cerr << "MODEL_PATH : Path to model weights" << std::endl;
         std::cerr << "INPUT_PATH : Path to input files" << std::endl;
-        return 1;
+
+        test();
+        
+        return 0;
     }
 
     int hiddenSize, inputSize, numClass, bptt;
@@ -56,10 +79,11 @@ int main(int argc, char **argv)
 
     MHEGRU *model = new MHEGRU(hiddenSize, inputSize, numClass, bptt);
     model->loadWeights(model_path);
-    model->encryptWeights();
+    model->forwardPlx(input_path);
+    // model->encryptWeights();
     // model->printEncryptedWeights();
 
-    model->forward(input_path);
+    // model->forward(input_path);
 
     return 0;
 }

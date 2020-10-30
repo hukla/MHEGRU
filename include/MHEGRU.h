@@ -31,7 +31,6 @@ private:
     // the input sequence length
     int bptt;
 
-    /// AddingProblem model weights
     // GRU weights for input to hidden
     double **Wh, **Wr, **Wz;
     // GRU weights for hidden to hidden
@@ -80,6 +79,10 @@ public:
     void encryptWeights();
 
     void printEncryptedWeights();
+
+    /// forward evaluates plaintext model forward propagation
+    /// \param input_path [in] string variable that contains path for input string file
+    void forwardPlx(string input_path);
 
     /// forward evaluates model forward propagation
     /// \param input_path [in] string variable that contains path for input string file

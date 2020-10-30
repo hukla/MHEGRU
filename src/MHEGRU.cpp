@@ -1,4 +1,5 @@
 #include "MHEGRU.h"
+#include "RNN.h"
 // #define MYDEBUG
 
 // double sigmoid_coeff[5] = {0.5, 1.73496, -4.19407, 5.43402, -2.50739};
@@ -114,33 +115,6 @@ MHEGRU::MHEGRU() { }
 
 MHEGRU::MHEGRU(int hiddenSize, int inputSize, int numClass, int bptt) : hiddenSize(hiddenSize), inputSize(inputSize), numClass(numClass), bptt(bptt)
 {
-    // generate
-    timeutils.start("Generating");
-    ring = Ring();
-    secretKey = SecretKey(ring);
-
-    //initialize scheme
-    scheme = Scheme(secretKey, ring);
-
-    // initialize hernn
-    hernn = HERNN(secretKey, scheme);
-
-    scheme.addLeftX0RotKeys(secretKey);
-    scheme.addLeftX1RotKeys(secretKey);
-    scheme.addBootKey(secretKey, logN0h, logN1, 44);
-    timeutils.stop("Generating");
-
-    // ????
-    Plaintext diag;
-    complex<double> *tmpmsg = new complex<double>[64 * 64]();
-    for (int i = 0; i < 64; ++i)
-    {
-        tmpmsg[i + i * 64] = 1.;
-    }
-    scheme.encode(diag, tmpmsg, 64, 64, logp);
-    ring.rightShiftAndEqual(diag.mx, logQ);
-    delete[] tmpmsg;
-
     // initialize weight variables
     this->Wh = new double *[hiddenSize];
     for (int i = 0; i < hiddenSize; ++i)
@@ -195,6 +169,34 @@ void MHEGRU::loadWeights(string path)
 
 void MHEGRU::encryptWeights() 
 {
+    // generate
+    timeutils.start("Generating");
+    ring = Ring();
+    secretKey = SecretKey(ring);
+
+    //initialize scheme
+    scheme = Scheme(secretKey, ring);
+
+    // initialize hernn
+    hernn = HERNN(secretKey, scheme);
+
+    scheme.addLeftX0RotKeys(secretKey);
+    scheme.addLeftX1RotKeys(secretKey);
+    scheme.addBootKey(secretKey, logN0h, logN1, 44);
+    timeutils.stop("Generating");
+
+    // ????
+    Plaintext diag;
+    complex<double> *tmpmsg = new complex<double>[64 * 64]();
+    for (int i = 0; i < 64; ++i)
+    {
+        tmpmsg[i + i * 64] = 1.;
+    }
+    scheme.encode(diag, tmpmsg, 64, 64, logp);
+    ring.rightShiftAndEqual(diag.mx, logQ);
+    delete[] tmpmsg;
+
+
     timeutils.start("Encrypting Weights");
     hernn.encryptMt(enc_Wh, Wh, hiddenSize, inputSize, logp, logQ);
     hernn.encryptMt(enc_Wz, Wz, hiddenSize, inputSize, logp, logQ);
@@ -229,6 +231,73 @@ void MHEGRU::printEncryptedWeights()
 
     hernn.printtr(enc_FW, "FW");
     hernn.print(enc_Fb, "Fb");
+}
+
+
+void MHEGRU::forwardPlx(string input_path)
+{
+    // load input file
+    double **sequence = new double *[bptt]; // input sequence, shape: (bptt, inputSize)
+    for (int i = 0; i < bptt; ++i)
+        sequence[i] = new double[inputSize];
+    loadMatrix(sequence, input_path + "input.csv");
+
+    double **hidden = new double *[bptt + 1]; // hidden state, shape: (bptt + 1, hiddenSize)
+    for (int i = 0; i < bptt + 1; ++i)
+        hidden[i] = new double[hiddenSize]();
+
+    // temporary values
+    double *Wzx = new double[hiddenSize]();
+    double *Uzh = new double[hiddenSize]();
+    double *z = new double[hiddenSize]();
+
+    double *Wrx = new double[hiddenSize]();
+    double *Urh = new double[hiddenSize]();
+    double *r = new double[hiddenSize]();
+
+    double *z1 = new double[hiddenSize]();
+    double *zh = new double[hiddenSize]();
+
+    double *Whx = new double[hiddenSize]();
+    double *Uhh = new double[hiddenSize]();
+    double *g = new double[hiddenSize]();
+
+    double *FWh = new double[numClass]();
+    double *output = new double[numClass]();
+
+	/* RNN forward */
+	for (int i = 0; i < bptt; ++i) {
+		RNN::evalMV(Wzx, Wz, sequence[i], hiddenSize, inputSize);
+		RNN::evalMV(Uzh, Uz, hidden[i], hiddenSize, hiddenSize);
+		RNN::evalAdd(z, Wzx, Uzh, hiddenSize);
+        RNN::evalAddAndEqual(z, bz, hiddenSize);
+		RNN::evalSigmoid(z, hiddenSize, 7);
+
+		RNN::evalMV(Wrx, Wr, sequence[i], hiddenSize, inputSize);
+		RNN::evalMV(Urh, Ur, hidden[i], hiddenSize, hiddenSize);
+		RNN::evalAdd(r, Wrx, Urh, hiddenSize);
+        RNN::evalAddAndEqual(r, br, hiddenSize);
+		RNN::evalSigmoid(r, hiddenSize, 7);
+
+		RNN::evalMV(Whx, Wh, sequence[i], hiddenSize, inputSize);
+		RNN::evalMV(Uhh, Uh, hidden[i], hiddenSize, hiddenSize);
+		RNN::evalMul(g, r, Uhh, hiddenSize);
+		RNN::evalAddAndEqual(g, Whx, hiddenSize);
+		RNN::evalTanh(g, hiddenSize, 7);
+
+		RNN::evalOnem(z1, z, hiddenSize);
+		RNN::evalMulAndEqual(g, z1, hiddenSize);
+
+		RNN::evalMul(zh, z, hidden[i], hiddenSize);
+		RNN::evalAdd(hidden[i+1], g, zh, hiddenSize);
+
+		RNN::printv(hidden[i+1], "GRU step "+to_string(i), hiddenSize);
+
+	}
+	/* fc forward */
+	RNN::evalMV(FWh, FW, hidden[bptt], numClass, hiddenSize);
+	RNN::evalAdd(output, FWh, Fb, numClass);
+	RNN::printv(output, "logit ", numClass);
 }
 
 
@@ -393,6 +462,7 @@ void MHEGRU::forward(string input_path)
         scheme.modDownTo(enc_htr, enc_zh, enc_g.logq); // enc_htr (33, 972)
         hernn.evalAddAndEqual(enc_htr, enc_g);         // hidden[i+1] = (1 - z) * g + z * hidden[t]
 
+        timeutils.stop("forward gru step " + to_string(t));
         // hernn.printtr(enc_htr, "enc_htr");
 
         if (enc_htr.logq < logq1 && t < bptt - 1)
@@ -412,7 +482,6 @@ void MHEGRU::forward(string input_path)
         {
             hernn.evalTrx2(enc_hidden, enc_htr, diag); // enc_hidden(33, 939)
         }
-        timeutils.stop("forward gru step " + to_string(t));
         hernn.printtr(enc_htr, "hidden ciphertext @ gru step " + to_string(t));
 
         // compare with plaintext hidden
