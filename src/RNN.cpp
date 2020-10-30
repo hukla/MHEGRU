@@ -1,4 +1,4 @@
-#include "RNN.h"dd
+#include "RNN.h"
 
 #include <NTL/ZZ.h>
 
