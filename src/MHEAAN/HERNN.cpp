@@ -226,35 +226,6 @@ void HERNN::evalSigmoid(Ciphertext &cipher)
     long loga = 2;							 //TODO: why???
     scheme->reScaleByAndEqual(cipher, loga); // cipher(31, 1205)
 
-    /* 7-order approximation : c[4] x^2 x^2 x (x^2 + c[3] / c[4]) + c[2] x (x^2 + c[1] / c[2]) + c[0] */
-    //	Ciphertext x_squared;
-    //	x_squared.copy(cipher);
-    //	scheme->squareAndEqual(x_squared);
-    //	scheme->reScaleByAndEqual(x_squared, logp);
-    //
-    //	Ciphertext firstTerm, tmp, x_fourth;
-    //	firstTerm.copy(x_squared);
-    //	scheme->addConstAndEqual(firstTerm, sigmoid_coeff[3] / sigmoid_coeff[4], logp - 2 * loga); //x^2 + c[3] / c[4]
-    //	scheme->multConst(tmp, cipher, sigmoid_coeff[4], logp + 7 * loga); // c[4] x
-    //	scheme->reScaleByAndEqual(tmp, logp);
-    //	x_fourth.copy(x_squared);
-    //	scheme->squareAndEqual(x_fourth); // x^4
-    //	scheme->reScaleByAndEqual(x_fourth, logp);
-    //	scheme->multAndEqual(firstTerm, tmp); // (x^2 + c[3]/c[4]) * c[4]x
-    //	scheme->multAndEqual(firstTerm, x_fourth); // (x^2 + c[3]/c[4]) * c[4]x^5
-    //	scheme->reScaleByAndEqual(firstTerm, logp);
-    //
-    //	Ciphertext secondTerm;
-    //	secondTerm.copy(x_squared);
-    //	scheme->addConstAndEqual(secondTerm, sigmoid_coeff[1] / sigmoid_coeff[2], logp - 2 * loga); // x^2 + c[1] / c[2]
-    //	scheme->multConst(tmp, cipher, sigmoid_coeff[2], logp + 3 * loga); // c[2]x
-    //	scheme->reScaleByAndEqual(tmp, logp);
-    //	scheme->multAndEqual(secondTerm, tmp); // (x^2 + c[1] / c[2]) * c[2]x
-    //    scheme->reScaleByAndEqual(secondTerm, logp);
-    //
-    //	scheme->add(cipher, firstTerm, secondTerm);
-    //	scheme->addConstAndEqual(cipher, sigmoid_coeff[0]);
-
     /* 3-order approximation */
     Ciphertext enca2;
     enca2.copy(cipher);
@@ -267,24 +238,6 @@ void HERNN::evalSigmoid(Ciphertext &cipher)
     scheme->reScaleByAndEqual(cipher, logp);									 // cipher(33,1139)
     scheme->addConstAndEqual(cipher, sigmoid3[0]);								 // cipher(33,1139)
 
-    /* 5-order approximation */
-    //	Ciphertext enca2;
-    //	enca2.copy(cipher);
-    //	scheme->squareAndEqual(enca2);
-    //	scheme->reScaleByAndEqual(enca2, logp);
-    //	Ciphertext enca2c, encac;
-    //	enca2c.copy(enca2);
-    //	scheme->addConstAndEqual(enca2c, sigmoid5[2] / sigmoid5[3], logp - 2 * loga); // x^2 + c[2] / c[3]
-    //	scheme->multConst(encac, cipher, sigmoid5[1], logp + loga); // c[1] * x
-    //	scheme->multConstAndEqual(cipher, sigmoid5[3], logp + 5 * loga); // c[3] * x
-    //	scheme->reScaleByAndEqual(cipher, logp);
-    //	scheme->multAndEqual(cipher, enca2); // c[3]x * x^2
-    //	scheme->multAndEqual(cipher, enca2c); // c[3]x * x^2 * (x^2 + c[2] / c[3])
-    //	scheme->reScaleByAndEqual(cipher, 2 * logp);
-    //	scheme->reScaleByAndEqual(encac, logp);
-    //	scheme->modDownByAndEqual(encac, 2 * logp);
-    //	scheme->addAndEqual(cipher, encac);
-    //	scheme->addConstAndEqual(cipher, sigmoid5[0]);
 }
 
 void HERNN::evalSigmoid(Ciphertext &cipher, int order)
@@ -392,7 +345,7 @@ void HERNN::evalTanh(Ciphertext &cipher, int order)
         scheme->addAndEqual(cipher, tmp0); // tmp1(logp, logq-3logp-loga)
 
 
-    } else{
+    } else if (order == 5) {
         /* 5-order approximation */
         Ciphertext enca2c, encac; //x^2+c[2]/c[3], c[1]x
         enca2c.copy(encIP2);
@@ -406,6 +359,17 @@ void HERNN::evalTanh(Ciphertext &cipher, int order)
         scheme->reScaleByAndEqual(encac, logp);									// encac(logp, logq-logp-loga)
         scheme->modDownByAndEqual(encac, 2 * logp);								// encac(logp, logq-3logp-loga)
         scheme->addAndEqual(cipher, encac);										// cipher (logp, logq-3logp-loga)
+    } else {
+        Ciphertext enca2;
+        enca2.copy(cipher);
+        scheme->squareAndEqual(enca2);												 // enca2(62, 1205)
+        scheme->reScaleByAndEqual(enca2, logp);										 // enca2(29, 1172)
+        scheme->addConstAndEqual(enca2, tanh3[1] / tanh3[2], logp - 2 * loga); // enca2(29, 1172), logp - 2 * loga = 29
+        scheme->multConstAndEqual(cipher, tanh3[2], logp + 3 * loga);			 // cipher(31, 1205) -> (70, 1205)
+        scheme->reScaleByAndEqual(cipher, logp);									 // cipher(37, 1172)
+        scheme->multAndEqual(cipher, enca2);										 // cipher(66, 1172)
+        scheme->reScaleByAndEqual(cipher, logp);									 // cipher(33,1139)
+        scheme->addConstAndEqual(cipher, tanh3[0]);								 // cipher(33,1139)
     }
 }
 

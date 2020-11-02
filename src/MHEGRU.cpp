@@ -1,5 +1,6 @@
 #include "MHEGRU.h"
 #include "RNN.h"
+#define _ORDER 3
 // #define MYDEBUG
 
 // double sigmoid_coeff[5] = {0.5, 1.73496, -4.19407, 5.43402, -2.50739};
@@ -402,7 +403,7 @@ void MHEGRU::forward(string input_path)
         hernn.printtr(tmp, "enc_br mod down");
         hernn.evalAddAndEqual(enc_r, tmp);         // r = WrX + UrH + br (33, logq)
         hernn.printtr(enc_r, "enc_r");
-        hernn.evalSigmoid(enc_r, 7);               // r = sigmoid(WrX + UrH + br) (33, logq - 4logp - loga)
+        hernn.evalSigmoid(enc_r, _ORDER);               // r = sigmoid(WrX + UrH + br) (33, logq - 4logp - loga)
         hernn.printtr(enc_r, "r gate");
 
         #else
@@ -415,7 +416,7 @@ void MHEGRU::forward(string input_path)
         hernn.evalAdd(enc_r, enc_Wrx, enc_Urh);    // r = WrX + UrH (33, logq)
         scheme.modDownTo(tmp, enc_br, enc_r.logq); // tmp=enc_br(33, logq)
         hernn.evalAddAndEqual(enc_r, tmp);         // r = WrX + UrH + br (33, logq)
-        hernn.evalSigmoid(enc_r, 7);               // r = sigmoid(WrX + UrH + br) (33, logq - 4logp - loga)
+        hernn.evalSigmoid(enc_r, _ORDER);               // r = sigmoid(WrX + UrH + br) (33, logq - 4logp - loga)
 
         #endif
 
@@ -434,7 +435,7 @@ void MHEGRU::forward(string input_path)
         // hernn.printtr(tmp, "tmp");
         hernn.evalAddAndEqual(enc_z, tmp); // z = WzX + UzH + bz
         // hernn.printtr(enc_z, "enc_z");
-        hernn.evalSigmoid(enc_z, 7);       // z = sigmoid(WzX + UzH + bz) (33, logq - 4logp - loga)
+        hernn.evalSigmoid(enc_z, _ORDER);       // z = sigmoid(WzX + UzH + bz) (33, logq - 4logp - loga)
         // hernn.printtr(enc_z, "z gate");
         //        printv(z, "update_gate @ step " + to_string(t + 1), hiddenSize);
 
@@ -448,7 +449,7 @@ void MHEGRU::forward(string input_path)
         hernn.evalAddAndEqual(enc_g, enc_Whx); // g = WgX + Ug(r * H)
         scheme.modDownToAndEqual(enc_bh, enc_g.logq);
         hernn.evalAddAndEqual(enc_g, enc_bh); // g = WgX + Ug(r * H) + bg, enc_g (33,1106)
-        hernn.evalTanh(enc_g, 7);                // g = tanh(WgX + Ug(r * H) + bg) enc_g (33, logq - 4logp - loga)
+        hernn.evalTanh(enc_g, _ORDER);                // g = tanh(WgX + Ug(r * H) + bg) enc_g (33, logq - 4logp - loga)
         // hernn.printtr(enc_g, "g gate");
 
         /* hidden[t+1] = (1 - z) * g + z * h */
