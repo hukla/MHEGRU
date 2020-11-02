@@ -175,7 +175,7 @@ void Ring::arrayBitReverse(complex<double>* vals, long n) {
 		long bit = n >> 1;
 		for (; j >= bit; bit>>=1) {
 			j -= bit;
-			if (j == 0 && bit == 0) break; // TODO
+			if (j == 0 && bit == 0) break;
 		}
 		j += bit;
 		if(i < j) {
