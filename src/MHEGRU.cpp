@@ -1,6 +1,6 @@
 #include "MHEGRU.h"
 #include "RNN.h"
-#define _ORDER 3
+#define _ORDER 5
 // #define MYDEBUG
 
 // double sigmoid_coeff[5] = {0.5, 1.73496, -4.19407, 5.43402, -2.50739};
@@ -508,4 +508,221 @@ void MHEGRU::forward(string input_path)
 
     hernn.printResult(enc_output, "Prediction result");
     
+}
+
+
+void MHEGRU::profile(string input_path) 
+{
+    // load input file
+    double **sequence = new double *[bptt]; // input sequence, shape: (bptt, inputSize)
+    for (int i = 0; i < bptt; ++i)
+        sequence[i] = new double[inputSize];
+    loadMatrix(sequence, input_path + "input.csv");
+
+    double **hidden = new double *[bptt + 1]; // hidden state, shape: (bptt + 1, hiddenSize)
+    for (int i = 0; i < bptt + 1; ++i)
+        hidden[i] = new double[hiddenSize]();
+
+    // temporary values
+    double *Wzx = new double[hiddenSize]();
+    double *Uzh = new double[hiddenSize]();
+    double *z = new double[hiddenSize]();
+
+    double *Wrx = new double[hiddenSize]();
+    double *Urh = new double[hiddenSize]();
+    double *r = new double[hiddenSize]();
+
+    double *z1 = new double[hiddenSize]();
+    double *zh = new double[hiddenSize]();
+
+    double *Whx = new double[hiddenSize]();
+    double *Uhh = new double[hiddenSize]();
+    double *g = new double[hiddenSize]();
+
+    double *FWh = new double[numClass]();
+    double *output = new double[numClass]();
+
+    // encrypt input
+    Ciphertext enc_x, enc_htr, enc_hidden;
+
+    // intermediate ciphertexts
+    Ciphertext enc_Wrx, enc_Urh, enc_Wzx, enc_Uzh, enc_Whx, enc_Uhh, enc_z1, enc_zh, enc_FWh, enc_output;
+
+    // ???????
+    Plaintext diag;
+    complex<double> *tmpmsg = new complex<double>[64 * 64]();
+    for (int i = 0; i < 64; ++i)
+    {
+        tmpmsg[i + i * 64] = 1.;
+    }
+    scheme.encode(diag, tmpmsg, 64, 64, logp);
+    ring.rightShiftAndEqual(diag.mx, logQ);
+    delete[] tmpmsg;
+    // ???????
+
+    Ciphertext tmp, tmp2;
+
+    long logq1 = (12 * logp + 2 + 2) + 40;
+
+    // encrypt first hidden
+    timeutils.start("encryptVx");
+    hernn.encryptVx(enc_hidden, hidden[0], hiddenSize, logp, logQ);
+    timeutils.stop("encryptVx");
+
+    // encrypt input
+    timeutils.start("encryptVx");
+    hernn.encryptVx(enc_x, sequence[0], inputSize, logp, logQ); //(33, 1240)
+    timeutils.stop("encryptVx");
+
+    /* r = sigmoid(WrX + UrH + br) */
+    timeutils.start("evalMV");
+    hernn.evalMV(enc_Wrx, enc_Wr, enc_x); // Wrx = Wr \cdot X  (33, 1207)
+    timeutils.stop("evalMV");
+    timeutils.start("modDownTo");
+    scheme.modDownTo(tmp, enc_Ur, enc_hidden.logq);
+    timeutils.stop("modDownTo");
+    timeutils.start("evalMV");
+    hernn.evalMV(enc_Urh, tmp, enc_hidden); // Urh = Ur \cdot H  (33, logq)
+    timeutils.stop("evalMV");
+    timeutils.start("modDownToAndEqual");
+    scheme.modDownToAndEqual(enc_Wrx, enc_Urh.logq);
+    timeutils.stop("modDownToAndEqual");
+    timeutils.start("evalAdd");
+    hernn.evalAdd(enc_r, enc_Wrx, enc_Urh);    // r = WrX + UrH (33, logq)
+    timeutils.stop("evalAdd");
+    timeutils.start("modDownTo");
+    scheme.modDownTo(tmp, enc_br, enc_r.logq); // tmp=enc_br(33, logq)
+    timeutils.stop("modDownTo");
+    timeutils.start("evalAddAndEqual");
+    hernn.evalAddAndEqual(enc_r, tmp);         // r = WrX + UrH + br (33, logq)
+    timeutils.stop("evalAddAndEqual");
+    for (int i = 1; i <= 3; i++)
+    {
+        int order = 2 * i + 1;
+        timeutils.start("evalSigmoid("+to_string(order)+")");
+        hernn.evalSigmoid(enc_r, order);               // r = sigmoid(WrX + UrH + br) (33, logq - 4logp - loga)
+        timeutils.stop("evalSigmoid("+to_string(order)+")");
+    }
+
+    /* z = sigmoid(WzX + UzH + bz) */
+    timeutils.start("evalMV");
+    hernn.evalMV(enc_Wzx, enc_Wz, enc_x); // Wzx = Wz \cdot X  (33, 1207)
+    timeutils.stop("evalMV");
+    timeutils.start("modDownTo");
+    scheme.modDownTo(tmp, enc_Uz, enc_hidden.logq);
+    timeutils.stop("modDownTo");
+    timeutils.start("evalMV");
+    hernn.evalMV(enc_Uzh, tmp, enc_hidden); // Uzh = Uz \cdot H  (33, logq)
+    timeutils.stop("evalMV");
+    timeutils.start("modDownToAndEqual");
+    scheme.modDownToAndEqual(enc_Wzx, enc_Uzh.logq);
+    timeutils.stop("modDownToAndEqual");
+    timeutils.start("evalAdd");
+    hernn.evalAdd(enc_z, enc_Wzx, enc_Uzh);    // r = WzX + UzH (33, logq)
+    timeutils.stop("evalAdd");
+    timeutils.start("modDownTo");
+    scheme.modDownTo(tmp, enc_bz, enc_z.logq); // tmp=enc_bz(33, logq)
+    timeutils.stop("modDownTo");
+    timeutils.start("evalAddAndEqual");
+    hernn.evalAddAndEqual(enc_z, tmp);         // r = WzX + UzH + bz (33, logq)
+    timeutils.stop("evalAddAndEqual");
+    for (int i = 1; i <= 3; i++)
+    {
+        int order = 2 * i + 1;
+        timeutils.start("evalSigmoid("+to_string(order)+")");
+        hernn.evalSigmoid(enc_z, order);               // z = sigmoid(WzX + UzH + bz) (33, logq - 4logp - loga)
+        timeutils.stop("evalSigmoid("+to_string(order)+")");
+    }
+
+    /* g = tanh(WgX + Ug(r * H) + bg) */
+    timeutils.start("evalMV");
+    hernn.evalMV(enc_Whx, enc_Wh, enc_x); // Wgx = Wg \cdot X
+    timeutils.stop("evalMV");
+    timeutils.start("modDownTo");
+    scheme.modDownTo(tmp, enc_Uh, enc_hidden.logq);
+    timeutils.stop("modDownTo");
+    timeutils.start("evalMV");
+    hernn.evalMV(enc_Uhh, tmp, enc_hidden); // Ugh = Ug \cdot H
+    timeutils.stop("evalMV");
+    timeutils.start("modDownTo");
+    scheme.modDownTo(enc_g, enc_Uhh, enc_r.logq);
+    timeutils.stop("modDownTo");
+    timeutils.start("evalMulAndEqual");
+    hernn.evalMulAndEqual(enc_g, enc_r); // g = UgH * r
+    timeutils.stop("evalMulAndEqual");
+    timeutils.start("modDownToAndEqual");
+    scheme.modDownToAndEqual(enc_Whx, enc_g.logq);
+    timeutils.stop("modDownToAndEqual");
+    timeutils.start("evalAddAndEqual");
+    hernn.evalAddAndEqual(enc_g, enc_Whx); // g = WgX + Ug(r * H)
+    timeutils.stop("evalAddAndEqual");
+    timeutils.start("modDownToAndEqual");
+    scheme.modDownToAndEqual(enc_bh, enc_g.logq);
+    timeutils.stop("modDownToAndEqual");
+    timeutils.start("evalAddAndEqual");
+    hernn.evalAddAndEqual(enc_g, enc_bh); // g = WgX + Ug(r * H) + bg, enc_g (33,1106)
+    timeutils.stop("evalAddAndEqual");
+    for (int i = 1; i <= 3; i++)
+    {
+        int order = 2 * i + 1;
+        timeutils.start("evalTanh("+to_string(order)+")");
+        hernn.evalTanh(enc_g, order);                // g = tanh(WgX + Ug(r * H) + bg) enc_g (33, logq - 4logp - loga)
+        timeutils.stop("evalTanh("+to_string(order)+")");
+    }
+
+    /* hidden[t+1] = (1 - z) * g + z * h */
+    timeutils.start("evalOnem");
+    hernn.evalOnem(enc_z1, enc_z, logp);          // z1 = 1 - z (33,1139)
+    timeutils.stop("evalOnem");
+    timeutils.start("modDownToAndEqual");
+    scheme.modDownToAndEqual(enc_z1, enc_g.logq); // (33, 1005)
+    timeutils.stop("modDownToAndEqual");
+    timeutils.start("evalMulAndEqual");
+    hernn.evalMulAndEqual(enc_g, enc_z1);         // g = (1 -z) * g (33, 972)
+    timeutils.stop("evalMulAndEqual");
+
+    timeutils.start("evalTrx1");
+    hernn.evalTrx1(enc_htr, enc_hidden, diag); // enc_htr (33, 1207)
+    timeutils.stop("evalTrx1");
+    timeutils.start("modDownTo");
+    scheme.modDownTo(enc_zh, enc_htr, enc_z.logq);
+    timeutils.stop("modDownTo");
+    timeutils.start("evalMulAndEqual");
+    hernn.evalMulAndEqual(enc_zh, enc_z);          // zh = z * hidden[t] enc_zh (33,1106)
+    timeutils.stop("evalMulAndEqual");
+    timeutils.start("modDownTo");
+    scheme.modDownTo(enc_htr, enc_zh, enc_g.logq); // enc_htr (33, 972)
+    timeutils.stop("modDownTo");
+    timeutils.start("evalAddAndEqual");
+    hernn.evalAddAndEqual(enc_htr, enc_g);         // hidden[i+1] = (1 - z) * g + z * hidden[t]
+    timeutils.stop("evalAddAndEqual");
+
+    timeutils.start("bootstrap");
+    long tmpn0 = enc_htr.n0;
+    long tmpn1 = enc_htr.n1;
+    enc_htr.n0 = N0h;
+    enc_htr.n1 = N1;
+    scheme.bootstrapAndEqual(enc_htr, 40, logQ, 4, 4);
+    enc_htr.n0 = tmpn0;
+    enc_htr.n1 = tmpn1;
+    timeutils.stop("bootstrap");
+    timeutils.start("evalTrx2");
+    hernn.evalTrx2(enc_hidden, enc_htr, diag); // enc_hidden(33, 939)
+    timeutils.stop("evalTrx2");
+
+    /* fc forward */
+    /* output = FWh + Fb */
+    timeutils.start("modDownTo");
+    scheme.modDownTo(tmp, enc_FW, enc_htr.logq);
+    timeutils.stop("modDownTo");
+    timeutils.start("evalMVx");
+    hernn.evalMVx(enc_FWh, tmp, enc_htr);
+    timeutils.stop("evalMVx");
+    timeutils.start("modDownTo");
+    scheme.modDownTo(enc_output, enc_Fb, enc_FWh.logq);
+    timeutils.stop("modDownTo");
+    timeutils.start("evalAddAndEqual");
+    hernn.evalAddAndEqual(enc_output, enc_FWh);
+    timeutils.stop("evalAddAndEqual");
+
 }

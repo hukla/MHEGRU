@@ -108,9 +108,15 @@ int main(int argc, const char **argv)
     model->loadWeights(model_path);
     model->forwardPlx(input_path);
     model->encryptWeights();
-    // model->printEncryptedWeights();
 
-    model->forward(input_path);
+    if (debug)
+    {
+        model->profile(input_path);
+    }
+    else
+    {
+        model->forward(input_path);
+    }
 
     return 0;
 }

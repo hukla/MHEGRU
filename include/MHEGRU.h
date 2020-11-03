@@ -88,6 +88,8 @@ public:
     /// \param input_path [in] string variable that contains path for input string file
     void forward(string input_path);
 
+    /// for matrix operation execution time profiling
+    void profile(string input_path);
 
 };
 
