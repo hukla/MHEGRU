@@ -115,7 +115,12 @@ int main(int argc, const char **argv)
     }
     else
     {
-        model->forward(input_path);
+        try
+        {
+            model->forward(input_path);
+        } catch (const exception e) {
+            cout << e.what() << endl;
+        }
     }
 
     return 0;
