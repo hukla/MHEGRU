@@ -63,7 +63,7 @@ int main(int argc, const char **argv)
         }
         else
         {
-            model_path = "MNIST/";
+            model_path = "sample_data/MNIST/";
         }
 
         if (result.count("input"))
@@ -72,7 +72,7 @@ int main(int argc, const char **argv)
         }
         else
         {
-            input_path = "MNIST/input_0/";
+            input_path = "sample_data/MNIST/input_0/";
         }
     }
     else if (task_id == 2)
@@ -85,7 +85,7 @@ int main(int argc, const char **argv)
         }
         else
         {
-            model_path = "addingProblem_6/";
+            model_path = "sample_data/addingProblem_6/";
         }
 
         if (result.count("input"))
@@ -94,7 +94,7 @@ int main(int argc, const char **argv)
         }
         else
         {
-            input_path = "addingProblem_6/input_0/";
+            input_path = "sample_data/addingProblem_6/input_0/";
         }
     }
     else

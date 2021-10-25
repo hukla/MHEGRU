@@ -158,7 +158,12 @@ void HERNN::encryptVt2(Ciphertext &res1, Ciphertext &res2, double *V, long Vrow,
 
 void HERNN::evalMV(Ciphertext &res, Ciphertext &cipherM, Ciphertext &cipherV)
 {
+    time_t start, end;
+    start = time(NULL);
     scheme->mult(res, cipherM, cipherV);
+    end = time(NULL);
+
+    printf("mult: %f", (double)(end - start));
     Ciphertext rot;
     for (int i = 1; i < cipherM.n0; i <<= 1)
     {

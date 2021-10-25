@@ -1,7 +1,7 @@
 #include "MHEGRU.h"
 #include "RNN.h"
-#define _ORDER 5
-// #define MYDEBUG
+#define _ORDER 7
+#define MYDEBUG
 
 // double sigmoid_coeff[5] = {0.5, 1.73496, -4.19407, 5.43402, -2.50739};
 // double tanh_coeff[4] = {1, -8.49814, 11.99804, -6.49478};
