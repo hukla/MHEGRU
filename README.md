@@ -1,5 +1,5 @@
 # MHEGRU
-GRU with implemented with MHEAAN
+GRU implemented with MHEAAN
 
 ## Install
 ~~~
