@@ -9,7 +9,9 @@ cmake ..
 make
 ~~~
 
-## Figure 1
+## Measuring execution times for Table 1
+
+![Table1](https://user-images.githubusercontent.com/6984542/141432998-c4f239d0-82df-4451-86a3-4cc6e1b7b9dd.png)
 
 1. debug 모드로 실행해서 출력되는 로그를 num_threads_[num_threads].txt 로 기록
 
