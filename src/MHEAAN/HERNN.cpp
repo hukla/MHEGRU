@@ -163,7 +163,7 @@ void HERNN::evalMV(Ciphertext &res, Ciphertext &cipherM, Ciphertext &cipherV)
     scheme->mult(res, cipherM, cipherV);
     end = time(NULL);
 
-    printf("mult: %f", (double)(end - start));
+    printf("mult: %f\n", (double)(end - start));
     Ciphertext rot;
     for (int i = 1; i < cipherM.n0; i <<= 1)
     {
